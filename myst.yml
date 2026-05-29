@@ -9,3 +9,4 @@ project:
 site:
   title: Teaching Materials
   template: book-theme
+  base_url: /teaching
