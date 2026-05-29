@@ -1,0 +1,11 @@
+version: 1
+project:
+  title: Teaching Materials
+  authors:
+    - name: Marshall EChem Lab
+  github: https://github.com/marshall-echem-lab/teaching
+  license: CC-BY-4.0
+
+site:
+  title: Teaching Materials
+  template: book-theme
