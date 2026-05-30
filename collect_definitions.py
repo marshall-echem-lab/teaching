@@ -108,17 +108,17 @@ def extract_keyterms(md_path: Path) -> list[tuple[str, str]]:
 
 def build_glossary(
     course_dir: Path,
-    all_terms: dict[str, list[tuple[str, str, str]]]
+    all_terms: list[tuple[str, str, str]]
 ) -> str:
     """
     Render the definitions file content.
 
-    all_terms: { letter: [(term, definition, source_filename), ...] }
+    all_terms: [(term, definition, source_filename), ...]
     """
     course_name = course_dir.name
     lines = [
         "---",
-        f"title: \"{course_name} — Key Terms\"",
+        f"title: \"Key Terms\"",
         "subtitle: \"Auto-generated glossary\"",
         "---",
         "",
@@ -129,13 +129,10 @@ def build_glossary(
         "",
     ]
 
-    for letter in sorted(all_terms.keys()):
-        lines.append(f"## {letter}")
+    for term, defn, source in sorted(all_terms, key=lambda x: x[0].lower()):
+        lines.append(f"**{term}**")
+        lines.append(f":   {defn}")
         lines.append("")
-        for term, defn, source in sorted(all_terms[letter], key=lambda x: x[0].lower()):
-            lines.append(f"**{term}**")
-            lines.append(f":   {defn}")
-            lines.append("")
 
     return "\n".join(lines)
 
@@ -158,17 +155,14 @@ def process_course(course_dir: Path) -> int:
         print(f"  No chapter files found in {course_dir.name}/")
         return 0
 
-    # Collect all terms, grouped by first letter
-    all_terms: dict[str, list[tuple[str, str, str]]] = {}
+    # Collect all terms as a flat list
+    all_terms: list[tuple[str, str, str]] = []
     total = 0
 
     for chapter in chapter_files:
         terms = extract_keyterms(chapter)
         for term, defn in terms:
-            letter = term[0].upper()
-            if letter not in all_terms:
-                all_terms[letter] = []
-            all_terms[letter].append((term, defn, chapter.name))
+            all_terms.append((term, defn, chapter.name))
             total += 1
 
     if total == 0:
