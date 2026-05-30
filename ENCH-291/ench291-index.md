@@ -8,9 +8,9 @@ Prof Aaron Marshall
 
 ## Lecture Notes
 
-- [Lecture 1 — Energy conservation](lecture-01-energy.md)
+- [Lecture 1 — Energy conservation](ench291-L01-energy-conservation.md)
 
-- [Lecture 2 — State Changes and State Properties](lecture-01-energy.md)
+- [Lecture 2 — State Changes and State Properties](ench291-L02-state-properties.md)
 
 ## Slides
 
