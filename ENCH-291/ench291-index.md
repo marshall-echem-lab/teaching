@@ -8,6 +8,8 @@ This page contains the lecture notes, slides and additional resources for the en
 
 - [Lecture 1 — Energy conservation](ench291-L01-energy-conservation)
 - [Lecture 2 — State Properties and Changes](ench291-L02-state-properties)
+- [Definitions](ench291-definitions)
+- [Useful Information](ench291-usefulinfo)
 
 ## Slides
 
