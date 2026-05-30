@@ -1,5 +1,5 @@
 ---
-title: "Lecture 1 — Energy Connservation"
+title: "Lecture 1 — Energy Conservation"
 ---
 
 ## The General Energy Balance

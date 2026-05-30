@@ -58,9 +58,9 @@ jobs:
       - name: Copy slides into MyST build
         run: |
           mkdir -p _build/html/slides
-          find . -name "*-slides.html" -not -path "./_build/*" | while read f; do
-            cp "$f" _build/html/slides/
-          done
+          find . -name "*-slides.html" -not -path "./_build/*" -exec cp {} _build/html/slides/ \;
+          echo "Slides copied:"
+          ls _build/html/slides/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -70,3 +70,7 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+
+
+
