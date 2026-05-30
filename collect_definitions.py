@@ -44,7 +44,7 @@ def extract_keyterms(md_path: Path) -> list[tuple[str, str]]:
     found in :::admonition / :class: keyterm blocks.
 
     Expected format:
-        :::admonition 📘 Key Terms
+        :::admonition 📘 Key Term
         :class: keyterm
 
         **Term** — definition text
@@ -119,7 +119,7 @@ def build_glossary(
     lines = [
         "---",
         f"title: \"{course_name} — Key Terms\"",
-        "subtitle: \"Auto-generated glossary — do not edit manually\"",
+        "subtitle: \"Auto-generated glossary\"",
         "---",
         "",
         f"# {course_name} Key Terms",
@@ -135,7 +135,6 @@ def build_glossary(
         for term, defn, source in sorted(all_terms[letter], key=lambda x: x[0].lower()):
             lines.append(f"**{term}**")
             lines.append(f":   {defn}")
-            lines.append(f"    *Source: {source}*")
             lines.append("")
 
     return "\n".join(lines)

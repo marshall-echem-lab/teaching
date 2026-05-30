@@ -12,7 +12,7 @@ State properties are things like temperature and pressure, $$P$$
 intensive and extensive properties
 <!-- book-only-end -->
 
-:::{admonition} 📘 Key Terms
+:::{admonition} 📘 Key Term
 :class: keyterm
 **Gibbs Energy** (*G*) — a thermodynamic state function and is defined as $G = H - TS$
 :::
