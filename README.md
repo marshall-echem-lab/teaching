@@ -156,12 +156,10 @@ Each course needs an `ench291-index.md` with this structure:
 
 ```markdown
 ---
-title: "ENCH291: Mass and Energy Balances"
+title: "Energy Balances"
+date: AUTO
 ---
-
-# Mass and Energy Balances
-
-Prof Aaron Marshall
+This page contains the lecture notes, slides and additional resources for "course name". "CourseName" is a course in Chemical and Process Engineering at the University of Canterbury.
 
 ## Lecture Notes
 
