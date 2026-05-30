@@ -5,10 +5,12 @@ md_to_slides.py
 Converts a MyST Markdown lecture file (.md) to a Quarto Reveal.js slide deck (.qmd).
 
 Content rules:
-  - Plain text and equations                    → book AND slides
-  - :::note / :class: slide-only                → slides only
+  - Plain text and equations                      → book AND slides
+  - :::note / :class: slide-only                  → slides only
   - <!-- book-only-start --> ... <!-- book-only-end --> → book only, plain prose
-  - :::admonition / :class: book-only           → book only, dropdown box
+  - :::admonition / :class: book-only             → book only, dropdown box
+  - ## Heading                                    → new slide AND book section
+  - ##. (dot suffix)                              → new slide only, reuses previous title, ignored in book
 
 Usage:
   python md_to_slides.py <input.md> [output.qmd]
@@ -17,6 +19,7 @@ Usage:
 import re
 import sys
 from pathlib import Path
+
 
 QUARTO_FRONTMATTER = """\
 ---
@@ -33,7 +36,6 @@ format:
 title: "{title}"
 ---
 """
-
 
 
 def extract_myst_title(frontmatter: str) -> str:
@@ -96,7 +98,13 @@ def parse_blocks(body: str) -> list[dict]:
     while i < len(lines):
         line = lines[i]
 
-        # heading
+        # ##. heading — slide continuation, invisible in book
+        if re.match(r'^#{2,6}\.\s*$', line.rstrip()):
+            blocks.append({"type": "slide_continue"})
+            i += 1
+            continue
+
+        # normal heading
         m = re.match(r'^(#{1,6})\s+(.*)', line)
         if m:
             blocks.append({"type": "heading", "level": len(m.group(1)), "text": m.group(2).strip()})
@@ -108,7 +116,7 @@ def parse_blocks(body: str) -> list[dict]:
             i += 1
             while i < len(lines) and lines[i].strip() != "<!-- book-only-end -->":
                 i += 1
-            i += 1  # skip the end marker
+            i += 1
             blocks.append({"type": "book_prose"})
             continue
 
@@ -131,6 +139,8 @@ def parse_blocks(body: str) -> list[dict]:
             l = lines[i]
             if l.strip() == "<!-- book-only-start -->":
                 break
+            if re.match(r'^#{2,6}\.\s*$', l.rstrip()):
+                break
             if (l.strip().startswith(":::") and len(l.strip()) > 3) or re.match(r'^#{1,6}\s', l):
                 break
             body_lines.append(l)
@@ -144,12 +154,20 @@ def parse_blocks(body: str) -> list[dict]:
 def blocks_to_slides(blocks: list[dict]) -> list[dict]:
     slides = []
     current = None
+    last_title = "Untitled"
 
     for block in blocks:
         if block["type"] == "heading" and block["level"] == 2:
             if current is not None:
                 slides.append(current)
-            current = {"title": block["text"], "lines": []}
+            last_title = block["text"]
+            current = {"title": last_title, "lines": []}
+
+        elif block["type"] == "slide_continue":
+            # new slide reusing the last title
+            if current is not None:
+                slides.append(current)
+            current = {"title": last_title, "lines": []}
 
         elif block["type"] in ("body", "slide_only"):
             if current is not None:

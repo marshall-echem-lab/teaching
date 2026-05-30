@@ -6,7 +6,7 @@ title: "Lecture 1 — Energy Conservation"
 
 The 1st Law of Thermodynamics states that energy is conserved
 
-## Energy is conserved
+##.
 
 2nd slide The 1st Law of Thermodynamics states that energy is conserved
 
