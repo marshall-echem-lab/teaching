@@ -42,4 +42,4 @@ jobs:
 
       - name: Generate slide QMD files
         run: |
-          find . -nam
+          find . -name
