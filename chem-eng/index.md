@@ -12,4 +12,4 @@ Prof Aaron Marshall
 
 ## Slides
 
-- [Lecture 1 (Slides) — Energy Balances](/teaching/slides/lecture-01-energy-slides.html)
+- [Lecture 1 (Slides) — Energy Balances](/slides/lecture-01-energy-slides.html)
