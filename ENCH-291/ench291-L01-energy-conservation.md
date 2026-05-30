@@ -1,6 +1,6 @@
 ---
-title: "Lecture 1"
-subtitle: "Energy Conservation"
+title: "Energy Conservation"
+subtitle: "Lecture 1"
 date: AUTO
 ---
 
