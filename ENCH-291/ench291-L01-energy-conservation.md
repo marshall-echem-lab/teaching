@@ -1,5 +1,5 @@
 ---
-title: "Lecture 1 — Energy Balances: Open Systems"
+title: "Lecture 1 — Energy Connservation"
 ---
 
 ## The General Energy Balance
