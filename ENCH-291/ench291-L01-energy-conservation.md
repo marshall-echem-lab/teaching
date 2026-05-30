@@ -6,9 +6,13 @@ title: "Lecture 1 — Energy Conservation"
 
 The 1st Law of Thermodynamics states that energy is conserved
 
-##.
+<!-- new slide -->
 
 2nd slide The 1st Law of Thermodynamics states that energy is conserved
+
+<!-- new slide -->
+
+3nd slide The 1st Law of Thermodynamics states that energy is conserved
 
 ## The General Energy Balance
 
