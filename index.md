@@ -8,4 +8,4 @@ This site contains lecture materials for courses taught by the Prof Aaron Marsha
 
 ## Courses
 
-- [Chemical Engineering Fundamentals](chem-eng/index.md)
+- [ENCH291 Mass and Energy Balances](ENCH291/index.md)
