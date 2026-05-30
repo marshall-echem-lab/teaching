@@ -5,6 +5,8 @@ project:
     - name: Prof Aaron Marshall
   github: https://github.com/marshall-echem-lab/teaching
   license: CC-BY-4.0
+  exclude:
+    - README.md
 
 site:
   title: Teaching Materials
