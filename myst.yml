@@ -14,3 +14,4 @@ site:
   options:
     hide_footer_links: true
     base_url: /teaching
+    style: _static/custom.css

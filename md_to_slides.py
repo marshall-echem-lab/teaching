@@ -9,6 +9,7 @@ Content rules:
   - :::note / :class: slide-only                      → slides only
   - <!-- book-only-start --> ... <!-- book-only-end --> → book only, plain prose
   - :::admonition / :class: book-only                 → book only, dropdown box
+  - :::{glossary}                                     → book AND slides (styled callout on slides)
   - ## Heading                                        → new slide AND book section
   - <!-- new slide -->                                → new slide only, reuses previous title, invisible in book
 
@@ -132,6 +133,43 @@ def clean_slide_only(inner_lines: list[str]) -> list[str]:
     return [l for l in inner_lines if not re.match(r'^\s*:class:', l)]
 
 
+def parse_glossary_inner(inner_lines: list[str]) -> list[tuple[str, str]]:
+    """Parse MyST glossary inner lines into (term, definition) pairs.
+
+    MyST glossary format:
+        Term Name
+          Indented definition text, may span multiple lines.
+    """
+    terms = []
+    current_term = None
+    current_def_lines = []
+
+    for line in inner_lines:
+        # A line with no leading whitespace (and non-empty) is a new term
+        if line and not line[0].isspace():
+            if current_term is not None:
+                terms.append((current_term, " ".join(current_def_lines).strip()))
+            current_term = line.strip()
+            current_def_lines = []
+        elif current_term is not None and line.strip():
+            current_def_lines.append(line.strip())
+
+    if current_term is not None:
+        terms.append((current_term, " ".join(current_def_lines).strip()))
+
+    return terms
+
+
+def glossary_to_callout_lines(terms: list[tuple[str, str]]) -> list[str]:
+    """Render (term, definition) pairs as a Quarto callout-note block for slides."""
+    lines = ["::: {.callout-note icon=false}", "## 📘 Key Terms", ""]
+    for term, defn in terms:
+        lines.append(f"**{term}** — {defn}")
+        lines.append("")
+    lines.append(":::")
+    return lines
+
+
 def parse_blocks(body: str) -> list[dict]:
     lines = body.splitlines()
     blocks = []
@@ -166,6 +204,13 @@ def parse_blocks(body: str) -> list[dict]:
         if line.strip().startswith(":::") and len(line.strip()) > 3:
             opening = line.strip()
             inner, i = collect_block(lines, i + 1)
+
+            # :::{glossary} — parse term/definition pairs for styled callout
+            if re.match(r'^:::\{glossary\}', opening):
+                terms = parse_glossary_inner(inner)
+                blocks.append({"type": "glossary", "terms": terms})
+                continue
+
             btype = classify_block(opening, inner)
             if btype == "slide_only":
                 blocks.append({"type": "slide_only", "lines": clean_slide_only(inner)})
@@ -213,6 +258,12 @@ def blocks_to_slides(blocks: list[dict]) -> list[dict]:
                 if current["lines"]:
                     current["lines"].append("")
                 current["lines"].extend(block["lines"])
+
+        elif block["type"] == "glossary":
+            if current is not None:
+                if current["lines"]:
+                    current["lines"].append("")
+                current["lines"].extend(glossary_to_callout_lines(block["terms"]))
 
         # book_prose and book_only silently dropped
 
