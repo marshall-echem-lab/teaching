@@ -3,4 +3,5 @@ root: teaching-index
 chapters:
   - file: ENCH-291/ench291-index
     children:
-      - pattern: ENCH-291/ench291-L*
+      - file: ENCH-291/ench291-L01-energy-conservation
+      - file: ENCH-291/ench291-L02-state-properties
