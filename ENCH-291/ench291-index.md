@@ -14,4 +14,5 @@ Prof Aaron Marshall
 
 ## Slides
 
-- [Lecture 1 (Slides) — Energy conservation](/slides/lecture-01-energy-slides.html)
+- [Lecture 1 (Slides) — Energy conservation](/slides/ench291-L01-energy-conservation-slides.html)
+- [Lecture 2 (Slides) — State Changes and State Properties](/slides/ench291-L02-state-properties-slides.html)
