@@ -18,7 +18,6 @@ import re
 import sys
 from pathlib import Path
 
-
 QUARTO_FRONTMATTER = """\
 ---
 format:
@@ -30,9 +29,11 @@ format:
     smaller: false
     scrollable: false
     html-math-method: mathjax
+    embed-resources: true
 title: "{title}"
 ---
 """
+
 
 
 def extract_myst_title(frontmatter: str) -> str:
