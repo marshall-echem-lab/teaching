@@ -1,10 +1,11 @@
 ---
-title: "ENCH291 Mass and Energy balances"
+title: "Mass and Energy balances"
 ---
 
-# Mass and Energy balances
-
+# Energy balances
 Prof Aaron Marshall
+
+This page contains the lecture notes, slides and additional resources for the energy balance section of "ENCH291 Mass and Energy Balances". ENCH291 is a 2nd year course in Chemical and Process Engineering at the University of Canterbury.
 
 ## Lecture Notes
 
@@ -15,3 +16,5 @@ Prof Aaron Marshall
 
 - [Lecture 1 (Slides) — Energy conservation](/slides/ench291-L01-energy-conservation-slides.html)
 - [Lecture 2 (Slides) — State Properties and Changes](/slides/ench291-L02-state-properties-slides.html)
+
+Last updated - June 2026
