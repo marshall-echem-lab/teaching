@@ -1,5 +1,7 @@
 ---
-title: "Lecture 2 — State properties and changes"
+title: "State properties and changes"
+subtitle: "Lecture 2"
+date: AUTO
 ---
 
 ## State properties

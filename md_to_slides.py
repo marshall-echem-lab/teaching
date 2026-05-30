@@ -52,6 +52,9 @@ format:
           }});
         </script>
 title: "{title}"
+subtitle: "{subtitle}"
+date: "{date}"
+date-format: "D MMMM YYYY"
 ---
 """
 
@@ -59,6 +62,29 @@ title: "{title}"
 def extract_myst_title(frontmatter: str) -> str:
     match = re.search(r'^title:\s*["\']?(.*?)["\']?\s*$', frontmatter, re.MULTILINE)
     return match.group(1).strip() if match else "Lecture"
+
+
+def extract_myst_subtitle(frontmatter: str) -> str:
+    match = re.search(r'^subtitle:\s*["\']?(.*?)["\']?\s*$', frontmatter, re.MULTILINE)
+    return match.group(1).strip() if match else ""
+
+
+def get_last_git_date(path: Path) -> str:
+    """Return the last git commit date for this file, or today if not in a repo."""
+    import subprocess
+    from datetime import date
+    try:
+        result = subprocess.run(
+            ["git", "log", "-1", "--format=%cs", "--", str(path)],
+            capture_output=True, text=True, check=True
+        )
+        iso = result.stdout.strip()  # YYYY-MM-DD
+        if iso:
+            y, m, d = iso.split("-")
+            return date(int(y), int(m), int(d)).strftime("%-d %B %Y")
+    except Exception:
+        pass
+    return date.today().strftime("%-d %B %Y")
 
 
 def strip_frontmatter(text: str) -> tuple[str, str]:
@@ -198,8 +224,8 @@ def blocks_to_slides(blocks: list[dict]) -> list[dict]:
     return slides
 
 
-def render_qmd(title: str, slides: list[dict]) -> str:
-    parts = [QUARTO_FRONTMATTER.format(title=title)]
+def render_qmd(title: str, subtitle: str, date: str, slides: list[dict]) -> str:
+    parts = [QUARTO_FRONTMATTER.format(title=title, subtitle=subtitle, date=date)]
     for slide in slides:
         parts.append(f"## {slide['title']}")
         parts.append("")
@@ -220,11 +246,13 @@ def convert(input_path: Path, output_path: Path) -> None:
     text = input_path.read_text(encoding="utf-8")
     frontmatter, body = strip_frontmatter(text)
     title = extract_myst_title(frontmatter)
+    subtitle = extract_myst_subtitle(frontmatter)
+    date = get_last_git_date(input_path)
     blocks = parse_blocks(body)
     slides = blocks_to_slides(blocks)
     if not slides:
         print(f"Warning: no slides found in {input_path}")
-    qmd = render_qmd(title, slides)
+    qmd = render_qmd(title, subtitle, date, slides)
     output_path.write_text(qmd, encoding="utf-8")
     print(f"✅ Generated {output_path}  ({len(slides)} slides)")
 

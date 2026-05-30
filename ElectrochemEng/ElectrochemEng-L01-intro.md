@@ -1,5 +1,7 @@
 ---
-title: "Lecture 1 — Introduction to Electrochemical Engineering"
+title: "Introduction to Electrochemical Engineering"
+subtitle: "Lecture 1"
+date: AUTO
 ---
 
 ## What is Electrochemistry?

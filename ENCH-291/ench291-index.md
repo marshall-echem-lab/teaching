@@ -2,7 +2,6 @@
 title: "Energy balances"
 date: AUTO
 ---
-
 This page contains the lecture notes, slides and additional resources for the energy balance section of "ENCH291 Mass and Energy Balances". ENCH291 is a 2nd year course in Chemical and Process Engineering at the University of Canterbury.
 
 ## Lecture Notes
