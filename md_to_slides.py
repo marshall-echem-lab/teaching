@@ -5,12 +5,12 @@ md_to_slides.py
 Converts a MyST Markdown lecture file (.md) to a Quarto Reveal.js slide deck (.qmd).
 
 Content rules:
-  - Plain text and equations                      → book AND slides
-  - :::note / :class: slide-only                  → slides only
+  - Plain text and equations                          → book AND slides
+  - :::note / :class: slide-only                      → slides only
   - <!-- book-only-start --> ... <!-- book-only-end --> → book only, plain prose
-  - :::admonition / :class: book-only             → book only, dropdown box
-  - ## Heading                                    → new slide AND book section
-  - ##. (dot suffix)                              → new slide only, reuses previous title, ignored in book
+  - :::admonition / :class: book-only                 → book only, dropdown box
+  - ## Heading                                        → new slide AND book section
+  - <!-- new slide -->                                → new slide only, reuses previous title, invisible in book
 
 Usage:
   python md_to_slides.py <input.md> [output.qmd]
@@ -98,16 +98,9 @@ def parse_blocks(body: str) -> list[dict]:
     while i < len(lines):
         line = lines[i]
 
-        # ##. heading — slide continuation, invisible in book
-        if re.match(r'^#{2,6}\.\s*$', line.rstrip()):
+        # <!-- new slide --> — continuation slide, invisible in book
+        if line.strip() == "<!-- new slide -->":
             blocks.append({"type": "slide_continue"})
-            i += 1
-            continue
-
-        # normal heading
-        m = re.match(r'^(#{1,6})\s+(.*)', line)
-        if m:
-            blocks.append({"type": "heading", "level": len(m.group(1)), "text": m.group(2).strip()})
             i += 1
             continue
 
@@ -118,6 +111,13 @@ def parse_blocks(body: str) -> list[dict]:
                 i += 1
             i += 1
             blocks.append({"type": "book_prose"})
+            continue
+
+        # normal heading
+        m = re.match(r'^(#{1,6})\s+(.*)', line)
+        if m:
+            blocks.append({"type": "heading", "level": len(m.group(1)), "text": m.group(2).strip()})
+            i += 1
             continue
 
         # ::: directive
@@ -137,9 +137,7 @@ def parse_blocks(body: str) -> list[dict]:
         body_lines = []
         while i < len(lines):
             l = lines[i]
-            if l.strip() == "<!-- book-only-start -->":
-                break
-            if re.match(r'^#{2,6}\.\s*$', l.rstrip()):
+            if l.strip() in ("<!-- new slide -->", "<!-- book-only-start -->"):
                 break
             if (l.strip().startswith(":::") and len(l.strip()) > 3) or re.match(r'^#{1,6}\s', l):
                 break
@@ -164,7 +162,6 @@ def blocks_to_slides(blocks: list[dict]) -> list[dict]:
             current = {"title": last_title, "lines": []}
 
         elif block["type"] == "slide_continue":
-            # new slide reusing the last title
             if current is not None:
                 slides.append(current)
             current = {"title": last_title, "lines": []}

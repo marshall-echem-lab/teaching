@@ -135,13 +135,13 @@ Content here...
 ### Continuation slide (new slide only, same title, INVISIBLE in book)
 
 ```markdown
-##.
+<!-- new slide -->
 
 More content on the same topic — slide 2 with the same title.
 No new section is created in the textbook.
 ```
 
-Use `##.` when a topic needs multiple slides but should be a
+Use `<!-- new slide -->` when a topic needs multiple slides but should be a
 single section in the textbook.
 
 ---
