@@ -12,5 +12,4 @@ Prof Aaron Marshall
 
 ## Slides
 
-- [Lecture 1 (Slides) — Introduction](/slides/ElectrochemEng-L01-intro.html)
-
+- [Lecture 1 (Slides) — Introduction](/slides/ElectrochemEng-L01-intro-slides.html)
