@@ -8,11 +8,11 @@ $$
 \dot{Q} - \dot{W}_s = \dot{m} \left[ \Delta h + \frac{\Delta u^2}{2} + g \Delta z \right]
 $$
 
-:::{only} book
+<!-- book-only-start -->
 where $\dot{Q}$ is heat input, $\dot{W}_s$ is shaft work, $\dot{m}$ is the
 mass flow rate, $\Delta h$ is the specific enthalpy change, $\Delta u^2/2$
 is the kinetic energy change, and $g \Delta z$ is the potential energy change.
-:::
+<!-- book-only-end -->
 
 :::{note}
 :class: slide-only
@@ -49,11 +49,11 @@ $$
 \Delta h = C_p \left( T_2 - T_1 \right)
 $$
 
-:::{only} book
+<!-- book-only-start -->
 These two expressions are the starting point for nearly all energy balance
 calculations. The integral form is exact; the simplified form assumes $C_p$
 is constant over the temperature range of interest.
-:::
+<!-- book-only-end -->
 
 :::{note}
 :class: slide-only
@@ -84,11 +84,11 @@ $$
 \dot{Q} = \dot{m} \, C_p \, \Delta T = 2.5 \times 4.18 \times 35 = \mathbf{365 \text{ kW}}
 $$
 
-:::{only} book
+<!-- book-only-start -->
 Here we assume steady state, negligible shaft work, and constant $C_p$
 for liquid water. The result tells us how much heat the exchanger must
 transfer per second to achieve the specified temperature rise.
-:::
+<!-- book-only-end -->
 
 :::{note}
 :class: slide-only

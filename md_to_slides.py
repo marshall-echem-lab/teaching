@@ -5,10 +5,10 @@ md_to_slides.py
 Converts a MyST Markdown lecture file (.md) to a Quarto Reveal.js slide deck (.qmd).
 
 Content rules:
-  - Plain text and equations        → book AND slides
-  - :::note / :class: slide-only    → slides only (extra teaching prompts)
-  - :::{only} book                  → book only, plain prose (stripped from slides)
-  - :::admonition / :class: book-only → book only, dropdown (stripped from slides)
+  - Plain text and equations                    → book AND slides
+  - :::note / :class: slide-only                → slides only
+  - <!-- book-only-start --> ... <!-- book-only-end --> → book only, plain prose
+  - :::admonition / :class: book-only           → book only, dropdown box
 
 Usage:
   python md_to_slides.py <input.md> [output.qmd]
@@ -49,10 +49,7 @@ def strip_frontmatter(text: str) -> tuple[str, str]:
 
 
 def collect_block(lines: list[str], start: int) -> tuple[list[str], int]:
-    """
-    Collect all lines belonging to a ::: block starting AFTER the opening :::.
-    Handles nested ::: blocks. Returns (inner_lines, next_index).
-    """
+    """Collect inner lines of a ::: block until closing :::."""
     depth = 1
     i = start
     inner = []
@@ -65,7 +62,6 @@ def collect_block(lines: list[str], start: int) -> tuple[list[str], int]:
                 i += 1
                 break
         elif s.startswith(":::") and len(s) > 3:
-            # opening of a nested block
             depth += 1
             inner.append(l)
         else:
@@ -75,31 +71,19 @@ def collect_block(lines: list[str], start: int) -> tuple[list[str], int]:
 
 
 def classify_block(opening_line: str, inner_lines: list[str]) -> str:
-    """
-    Given the opening ::: line and inner content, return block type:
-      slide_only | book_prose | book_only | other
-    """
-    # Check opening line for {only} book
-    if re.search(r'\{only\}\s*book', opening_line):
-        return "book_prose"
-
-    # Check inner lines for :class: directives
     classes = []
     for l in inner_lines:
         m = re.match(r'^\s*:class:\s*(.*)', l)
         if m:
             classes.extend(m.group(1).split())
-
     if "slide-only" in classes:
         return "slide_only"
     if "book-only" in classes:
         return "book_only"
-
     return "other"
 
 
 def clean_slide_only(inner_lines: list[str]) -> list[str]:
-    """Strip :class: lines from slide_only content."""
     return [l for l in inner_lines if not re.match(r'^\s*:class:', l)]
 
 
@@ -118,20 +102,25 @@ def parse_blocks(body: str) -> list[dict]:
             i += 1
             continue
 
+        # <!-- book-only-start --> ... <!-- book-only-end -->
+        if line.strip() == "<!-- book-only-start -->":
+            i += 1
+            while i < len(lines) and lines[i].strip() != "<!-- book-only-end -->":
+                i += 1
+            i += 1  # skip the end marker
+            blocks.append({"type": "book_prose"})
+            continue
+
         # ::: directive
         if line.strip().startswith(":::") and len(line.strip()) > 3:
             opening = line.strip()
             inner, i = collect_block(lines, i + 1)
             btype = classify_block(opening, inner)
-
             if btype == "slide_only":
                 blocks.append({"type": "slide_only", "lines": clean_slide_only(inner)})
-            elif btype == "book_prose":
-                blocks.append({"type": "book_prose"})
             elif btype == "book_only":
                 blocks.append({"type": "book_only"})
             else:
-                # unknown directive — pass through as body
                 blocks.append({"type": "body", "lines": inner})
             continue
 
@@ -139,6 +128,8 @@ def parse_blocks(body: str) -> list[dict]:
         body_lines = []
         while i < len(lines):
             l = lines[i]
+            if l.strip() == "<!-- book-only-start -->":
+                break
             if (l.strip().startswith(":::") and len(l.strip()) > 3) or re.match(r'^#{1,6}\s', l):
                 break
             body_lines.append(l)
@@ -165,7 +156,7 @@ def blocks_to_slides(blocks: list[dict]) -> list[dict]:
                     current["lines"].append("")
                 current["lines"].extend(block["lines"])
 
-        # book_prose and book_only are silently dropped
+        # book_prose and book_only silently dropped
 
     if current is not None:
         slides.append(current)
