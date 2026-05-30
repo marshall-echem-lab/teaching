@@ -2,6 +2,14 @@
 title: "Lecture 1 — Energy Conservation"
 ---
 
+## Energy is conserved
+
+The 1st Law of Thermodynamics states that energy is conserved
+
+## Energy is conserved
+
+2nd slide The 1st Law of Thermodynamics states that energy is conserved
+
 ## The General Energy Balance
 
 $$

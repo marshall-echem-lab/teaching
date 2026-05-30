@@ -42,7 +42,7 @@ jobs:
 
       - name: Generate slide QMD files
         run: |
-          find . -name "*.md" -not -path "./_build/*" -not -name "index.md" -not -path "./.github/*" | while read f; do
+          find . -name "*.md" -not -path "./_build/*" -not -name "index.md" -not -name "*-index.md" -not -path "./.github/*" | while read f; do
             python md_to_slides.py "$f"
           done
 
@@ -70,6 +70,10 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+
+
+     
 
 
 

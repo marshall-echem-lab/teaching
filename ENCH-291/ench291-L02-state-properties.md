@@ -4,10 +4,8 @@ title: "Lecture 2 — State properties and changes"
 
 ## State properties
 
-$$
-\dot{Q} - \dot{W}_s = \dot{m} \left[ \Delta h + \frac{\Delta u^2}{2} + g \Delta z \right]
-$$
-updated
+State properties are things like temperature and pressure, $$P$$
+
 <!-- book-only-start -->
 intensive and extensive properties
 <!-- book-only-end -->
