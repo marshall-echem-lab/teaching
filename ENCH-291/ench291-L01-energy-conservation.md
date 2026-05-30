@@ -1,5 +1,7 @@
 ---
-title: "Lecture 1 — Energy Conservation"
+title: "Lecture 1"
+subtitle: "Energy Conservation"
+date: AUTO
 ---
 
 ## Energy is conserved
