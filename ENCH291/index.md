@@ -1,5 +1,5 @@
 ---
-title: ENCH291 Mass and Energy balances
+title: "ENCH291 Mass and Energy balances"
 ---
 
 # Mass and Energy balances
