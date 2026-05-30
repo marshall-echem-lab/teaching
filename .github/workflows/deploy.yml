@@ -52,9 +52,12 @@ jobs:
       - name: Install Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
+      - name: Collect key term definitions
+        run: python collect_definitions.py
+
       - name: Generate slide QMD files
         run: |
-          find . -name "*.md" -not -path "./_build/*" -not -name "index.md" -not -name "*-index.md" -not -iname "readme.md" -not -path "./.github/*" | while read f; do
+          find . -name "*.md" -not -path "./_build/*" -not -name "index.md" -not -name "*-index.md" -not -iname "readme.md" -not -path "./.github/*" -not -name "*-definitions.md" | while read f; do
             python md_to_slides.py "$f"
           done
 
