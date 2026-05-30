@@ -15,4 +15,3 @@ This page contains the lecture notes, slides and additional resources for the en
 - [Lecture 1 (Slides) — Energy conservation](/slides/ench291-L01-energy-conservation-slides.html)
 - [Lecture 2 (Slides) — State Properties and Changes](/slides/ench291-L02-state-properties-slides.html)
 
-Last updated - June 2026

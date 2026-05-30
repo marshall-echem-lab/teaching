@@ -28,12 +28,12 @@ jobs:
       - name: Inject last-modified dates
         run: |
           for f in $(find ENCH-291 -name "*.md"); do
-            DATE=$(git log -1 --format="%Y-%m-%d" -- "$f")
-            sed -i "s/date: AUTO/date: $DATE/" "$f"
+            DATE=$(git log -1 --format="%Y-%m-%d" -- "$f" | tr -d '[:space:]')
+            if [ -z "$DATE" ]; then
+              DATE=$(date +%Y-%m-%d)
+            fi
+            sed -i "s|date: AUTO|date: $DATE|g" "$f"
           done
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
 
       - name: Setup Pages
         uses: actions/configure-pages@v3
