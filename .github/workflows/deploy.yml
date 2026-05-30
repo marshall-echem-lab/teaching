@@ -27,8 +27,8 @@ jobs:
 
       - name: Inject last-modified dates
         run: |
-          for f in $(find ENCH-291 -name "*.md"); do
-            DATE=$(git log -1 --format="%Y-%m-%d" -- "$f" | tr -d '[:space:]')
+          for f in $(find . -name "*.md" -not -path "./_build/*" -not -path "./.github/*"); do
+            DATE=$(git log -1 --pretty=format:"%cd" --date=short -- "$f" | tr -d '[:space:]')
             if [ -z "$DATE" ]; then
               DATE=$(date +%Y-%m-%d)
             fi
