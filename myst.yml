@@ -9,4 +9,6 @@ project:
 site:
   title: Teaching Materials
   template: book-theme
-  base_url: /teaching
+  options:
+    hide_footer_links: true
+    base_url: /teaching

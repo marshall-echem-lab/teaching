@@ -4,13 +4,15 @@ title: "Lecture 1 — Energy Balances: Open Systems"
 
 ## The General Energy Balance
 
-The steady-state energy balance for an **open system** is:
-
 $$
 \dot{Q} - \dot{W}_s = \dot{m} \left[ \Delta h + \frac{\Delta u^2}{2} + g \Delta z \right]
 $$
 
-where $\dot{Q}$ is heat input, $\dot{W}_s$ is shaft work, and $\Delta h$ is the specific enthalpy change.
+:::{only} book
+where $\dot{Q}$ is heat input, $\dot{W}_s$ is shaft work, $\dot{m}$ is the
+mass flow rate, $\Delta h$ is the specific enthalpy change, $\Delta u^2/2$
+is the kinetic energy change, and $g \Delta z$ is the potential energy change.
+:::
 
 :::{note}
 :class: slide-only
@@ -41,11 +43,17 @@ $$
 \Delta h = \int_{T_1}^{T_2} C_p(T) \, dT
 $$
 
-For an ideal gas with constant $C_p$:
+For an ideal gas with constant $C_p$ this simplifies to:
 
 $$
 \Delta h = C_p \left( T_2 - T_1 \right)
 $$
+
+:::{only} book
+These two expressions are the starting point for nearly all energy balance
+calculations. The integral form is exact; the simplified form assumes $C_p$
+is constant over the temperature range of interest.
+:::
 
 :::{note}
 :class: slide-only
@@ -75,6 +83,12 @@ Mass flow rate is 2.5 kg/s. Find $\dot{Q}$.
 $$
 \dot{Q} = \dot{m} \, C_p \, \Delta T = 2.5 \times 4.18 \times 35 = \mathbf{365 \text{ kW}}
 $$
+
+:::{only} book
+Here we assume steady state, negligible shaft work, and constant $C_p$
+for liquid water. The result tells us how much heat the exchanger must
+transfer per second to achieve the specified temperature rise.
+:::
 
 :::{note}
 :class: slide-only
