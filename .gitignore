@@ -2,3 +2,5 @@
 _build
 *-slides.qmd
 *-slides.html
+*-slides_files/
+.DS_Store

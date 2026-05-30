@@ -23,6 +23,4 @@ intensive and extensive properties
 
 ## State changes and process path
 
-One of the very useful attributes of state properties is tha
-
-
+One of the very useful attributes of state properties is that
