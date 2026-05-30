@@ -1,3 +1,7 @@
+---
+exclude: true
+---
+
 # Teaching Materials — Workflow Guide
 
 This repo contains lecture materials for courses taught by Prof Aaron Marshall.
