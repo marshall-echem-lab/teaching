@@ -12,9 +12,9 @@ State properties are things like temperature and pressure, $$P$$
 intensive and extensive properties
 <!-- book-only-end -->
 
-:::{glossary}
-Gibbs Energy
-  *G* is a thermodynamic state function and is defined as $G = H - TS$
+:::{admonition} 📘 Key Terms
+:class: keyterm
+**Gibbs Energy** (*G*) is a thermodynamic state function and is defined as $G = H - TS$
 :::
 
 :::{note}

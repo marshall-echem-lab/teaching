@@ -9,7 +9,7 @@ Content rules:
   - :::note / :class: slide-only                      → slides only
   - <!-- book-only-start --> ... <!-- book-only-end --> → book only, plain prose
   - :::admonition / :class: book-only                 → book only, dropdown box
-  - :::{glossary}                                     → book AND slides (styled callout on slides)
+  - :::admonition / :class: keyterm                   → book AND slides (styled Key Terms callout)
   - ## Heading                                        → new slide AND book section
   - <!-- new slide -->                                → new slide only, reuses previous title, invisible in book
 
@@ -126,46 +126,27 @@ def classify_block(opening_line: str, inner_lines: list[str]) -> str:
         return "slide_only"
     if "book-only" in classes:
         return "book_only"
+    if "keyterm" in classes:
+        return "keyterm"
     return "other"
 
 
-def clean_slide_only(inner_lines: list[str]) -> list[str]:
-    return [l for l in inner_lines if not re.match(r'^\s*:class:', l)]
+def clean_directive_classes(inner_lines: list[str]) -> list[str]:
+    """Strip :class: and :name: option lines from inner block content."""
+    return [l for l in inner_lines if not re.match(r'^\s*:(class|name):', l)]
 
 
-def parse_glossary_inner(inner_lines: list[str]) -> list[tuple[str, str]]:
-    """Parse MyST glossary inner lines into (term, definition) pairs.
-
-    MyST glossary format:
-        Term Name
-          Indented definition text, may span multiple lines.
-    """
-    terms = []
-    current_term = None
-    current_def_lines = []
-
-    for line in inner_lines:
-        # A line with no leading whitespace (and non-empty) is a new term
-        if line and not line[0].isspace():
-            if current_term is not None:
-                terms.append((current_term, " ".join(current_def_lines).strip()))
-            current_term = line.strip()
-            current_def_lines = []
-        elif current_term is not None and line.strip():
-            current_def_lines.append(line.strip())
-
-    if current_term is not None:
-        terms.append((current_term, " ".join(current_def_lines).strip()))
-
-    return terms
-
-
-def glossary_to_callout_lines(terms: list[tuple[str, str]]) -> list[str]:
-    """Render (term, definition) pairs as a Quarto callout-note block for slides."""
+def keyterm_to_callout_lines(inner_lines: list[str]) -> list[str]:
+    """Render a keyterm admonition as a Quarto callout-note block for slides."""
+    content = clean_directive_classes(inner_lines)
+    # Strip blank lines at top/bottom
+    while content and not content[0].strip():
+        content.pop(0)
+    while content and not content[-1].strip():
+        content.pop()
     lines = ["::: {.callout-note icon=false}", "## 📘 Key Terms", ""]
-    for term, defn in terms:
-        lines.append(f"**{term}** — {defn}")
-        lines.append("")
+    lines.extend(content)
+    lines.append("")
     lines.append(":::")
     return lines
 
@@ -204,18 +185,13 @@ def parse_blocks(body: str) -> list[dict]:
         if line.strip().startswith(":::") and len(line.strip()) > 3:
             opening = line.strip()
             inner, i = collect_block(lines, i + 1)
-
-            # :::{glossary} — parse term/definition pairs for styled callout
-            if re.match(r'^:::\{glossary\}', opening):
-                terms = parse_glossary_inner(inner)
-                blocks.append({"type": "glossary", "terms": terms})
-                continue
-
             btype = classify_block(opening, inner)
             if btype == "slide_only":
-                blocks.append({"type": "slide_only", "lines": clean_slide_only(inner)})
+                blocks.append({"type": "slide_only", "lines": clean_directive_classes(inner)})
             elif btype == "book_only":
                 blocks.append({"type": "book_only"})
+            elif btype == "keyterm":
+                blocks.append({"type": "keyterm", "lines": inner})
             else:
                 blocks.append({"type": "body", "lines": inner})
             continue
@@ -259,11 +235,11 @@ def blocks_to_slides(blocks: list[dict]) -> list[dict]:
                     current["lines"].append("")
                 current["lines"].extend(block["lines"])
 
-        elif block["type"] == "glossary":
+        elif block["type"] == "keyterm":
             if current is not None:
                 if current["lines"]:
                     current["lines"].append("")
-                current["lines"].extend(glossary_to_callout_lines(block["terms"]))
+                current["lines"].extend(keyterm_to_callout_lines(block["lines"]))
 
         # book_prose and book_only silently dropped
 

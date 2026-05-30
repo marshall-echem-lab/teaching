@@ -1,43 +1,32 @@
 /* ============================================================
-   Glossary / Key Term styling
-   Targets MyST's :::{glossary} directive output:
-     <dl class="glossary simple">
-       <dt>Term</dt>
-       <dd>Definition</dd>
-     </dl>
+   Key Term styling
+   Targets :::admonition / :class: keyterm blocks.
+   MyST renders these as:
+     <aside class="myst-admonition ... keyterm">
+       <div class="myst-admonition-header">...</div>
+       <div class="myst-admonition-body">...</div>
+     </aside>
    ============================================================ */
 
-dl.glossary {
-  background-color: #eef6fb;          /* light blue tint */
-  border-left: 4px solid #2980b9;     /* solid blue left bar */
+.myst-admonition.keyterm {
+  background-color: #eef6fb;
+  border-left: 4px solid #2980b9 !important;
   border-radius: 4px;
-  padding: 0.8em 1.2em;
-  margin: 1.2em 0;
 }
 
-dl.glossary::before {
-  content: "📘 Key Terms";
-  display: block;
-  font-weight: 700;
-  font-size: 0.85em;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+.myst-admonition.keyterm .myst-admonition-header {
+  background-color: #d6eaf8;
+  color: #1a5276;
+}
+
+.myst-admonition.keyterm .myst-admonition-header svg {
   color: #2980b9;
-  margin-bottom: 0.6em;
 }
 
-dl.glossary dt {
-  font-weight: 700;
+.myst-admonition.keyterm .myst-admonition-body {
   color: #1a1a2e;
-  margin-top: 0.5em;
 }
 
-dl.glossary dt:first-of-type {
-  margin-top: 0;
-}
-
-dl.glossary dd {
-  margin-left: 1.2em;
-  margin-bottom: 0.3em;
-  color: #333;
+.myst-admonition.keyterm .myst-admonition-body strong {
+  color: #1a5276;
 }
