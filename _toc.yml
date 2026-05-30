@@ -1,0 +1,4 @@
+format: jb-book
+root: teaching-index
+chapters:
+  - glob: ENCH-291/*
