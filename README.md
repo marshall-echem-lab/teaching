@@ -34,9 +34,9 @@ teaching/
 
 | File | Pattern | Example |
 |---|---|---|
-| Course folder | `COURSECODE-NNN` | `ENCH-291` |
-| Course index | `coursecode-index.md` | `ench291-index.md` |
-| Lecture files | `coursecode-LNN-topic.md` | `ench291-L01-energy-conservation.md` |
+| Course folder | `CourseName` | `ElectrochemEng` |
+| Course index | `CourseName-index.md` | `ElectrochemEng-index.md` |
+| Lecture files | `CourseName-LNN-topic.md` | `ElectrochemEng-L01-energy-conservation.md` |
 | Site index | `teaching-index.md` | — |
 
 **Never name files `index.md`** — VS Code tabs won't distinguish them.
@@ -48,9 +48,9 @@ Files ending in `-index.md` are automatically excluded from slide generation.
 
 ### Adding a new lecture
 
-1. Create `ENCH-291/ench291-LNN-topic.md` using the four-block pattern below
-2. Add the lecture and slide links to `ENCH-291/ench291-index.md`
-3. Add the file to `ENCH-291/_toc.yml` in the correct order
+1. Create `CourseName/CourseName-LNN-topic.md` using the four-block pattern below
+2. Add the lecture and slide links to `CourseName/CourseName-index.md`
+3. Add the file to `CourseName/_toc.yml` in the correct order
 4. Commit and push — GitHub Actions handles the rest
 
 ### Committing and pushing (VS Code)

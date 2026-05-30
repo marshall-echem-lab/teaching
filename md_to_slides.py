@@ -53,8 +53,6 @@ format:
         </script>
 title: "{title}"
 subtitle: "{subtitle}"
-date: "{date}"
-date-format: "D MMMM YYYY"
 ---
 """
 
@@ -224,8 +222,8 @@ def blocks_to_slides(blocks: list[dict]) -> list[dict]:
     return slides
 
 
-def render_qmd(title: str, subtitle: str, date: str, slides: list[dict]) -> str:
-    parts = [QUARTO_FRONTMATTER.format(title=title, subtitle=subtitle, date=date)]
+def render_qmd(title: str, subtitle: str, slides: list[dict]) -> str:
+    parts = [QUARTO_FRONTMATTER.format(title=title, subtitle=subtitle)]
     for slide in slides:
         parts.append(f"## {slide['title']}")
         parts.append("")
@@ -252,7 +250,7 @@ def convert(input_path: Path, output_path: Path) -> None:
     slides = blocks_to_slides(blocks)
     if not slides:
         print(f"Warning: no slides found in {input_path}")
-    qmd = render_qmd(title, subtitle, date, slides)
+    qmd = render_qmd(title, subtitle, slides)
     output_path.write_text(qmd, encoding="utf-8")
     print(f"✅ Generated {output_path}  ({len(slides)} slides)")
 
