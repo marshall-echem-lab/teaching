@@ -2,9 +2,9 @@
 title: "Electrochemical Engineering"
 ---
 
-# Electrochemical Engineering and Energy Technology
+%# Electrochemical Engineering and Energy Technology
 
-Prof Aaron Marshall
+
 
 ## Lecture Notes
 
