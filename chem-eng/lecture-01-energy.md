@@ -7,7 +7,7 @@ title: "Lecture 1 — Energy Balances: Open Systems"
 $$
 \dot{Q} - \dot{W}_s = \dot{m} \left[ \Delta h + \frac{\Delta u^2}{2} + g \Delta z \right]
 $$
-
+updated
 <!-- book-only-start -->
 where $\dot{Q}$ is heat input, $\dot{W}_s$ is shaft work, $\dot{m}$ is the
 mass flow rate, $\Delta h$ is the specific enthalpy change, $\Delta u^2/2$

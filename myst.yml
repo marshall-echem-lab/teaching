@@ -2,7 +2,7 @@ version: 1
 project:
   title: Teaching Materials
   authors:
-    - name: Marshall EChem Lab
+    - name: Prof Aaron Marshall
   github: https://github.com/marshall-echem-lab/teaching
   license: CC-BY-4.0
 
