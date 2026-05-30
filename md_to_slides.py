@@ -39,17 +39,17 @@ format:
           // Re-run MathJax typesetting on every slide change and on initial ready.
           // Fixes a race condition on iOS/WebKit where MathJax loads asynchronously
           // and may not have finished before the first slide is painted.
-          function retypeset() {
-            if (window.MathJax && MathJax.typesetPromise) {
+          function retypeset() {{
+            if (window.MathJax && MathJax.typesetPromise) {{
               MathJax.typesetPromise();
-            }
-          }
-          window.addEventListener('load', function () {
-            if (typeof Reveal !== 'undefined') {
+            }}
+          }}
+          window.addEventListener('load', function () {{
+            if (typeof Reveal !== 'undefined') {{
               Reveal.on('ready', retypeset);
               Reveal.on('slidechanged', retypeset);
-            }
-          });
+            }}
+          }});
         </script>
 title: "{title}"
 ---
