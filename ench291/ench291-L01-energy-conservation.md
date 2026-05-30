@@ -15,7 +15,7 @@ The 1st Law of Thermodynamics states that energy is conserved
 
 :::{admonition} 📘 Key Terms
 :class: keyterm
-**Internal Energy** (*U*) is a thermodynamic state function - it is how energy is stored within matter
+**Internal Energy** (*U*) — a thermodynamic state function - it is how energy is stored within matter
 :::
 
 <!-- new slide -->
@@ -24,7 +24,7 @@ The 1st Law of Thermodynamics states that energy is conserved
 
 :::{admonition} 📘 Key Terms
 :class: keyterm
-**Enthalpy** (*H*) is a thermodynamic state function defined as $H = U + PV$
+**Enthalpy** (*H*) — a thermodynamic state function defined as $H = U + PV$
 :::
 
 ## The General Energy Balance
