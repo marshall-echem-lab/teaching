@@ -36,16 +36,27 @@ jobs:
       - name: Generate course glossaries
         run: python collect_definitions.py
 
-      # ── Render slide decks ────────────────────────────────────────────────
-      # Uses _quarto-slides.yml profile: outputs standalone Reveal.js HTML
-      # files to _slides/, one per lecture .qmd file.
       - name: Render slide decks
-        run: quarto render --profile slides --config _quarto-slides.yml
+        run: |
+          find . -path './_site' -prune -o -path './_slides' -prune -o \
+            -name 'L*.qmd' -print | while read f; do
+            dir=$(dirname "$f")
+            quarto render "$f" \
+              --to revealjs \
+              --output-dir "_slides/$dir" \
+              -M embed-resources:true \
+              -M slide-number:true \
+              -M controls:true \
+              -M progress:true \
+              -M theme:simple \
+              -M html-math-method:mathjax \
+              -M width:1050 \
+              -M height:700 \
+              -M margin:0.1 \
+              -M navigationMode:linear \
+              -M transition:none
+          done
 
-      # ── Render textbook ───────────────────────────────────────────────────
-      # Uses default _quarto.yml: outputs the full Quarto book to _site/.
-      # Slides in _slides/ are copied into _site/_slides/ so relative links
-      # from the book index pages resolve correctly on GitHub Pages.
       - name: Render textbook
         run: quarto render
 
