@@ -1,0 +1,11 @@
+---
+title: "Electrochemical Engineering"
+---
+
+This section contains lecture notes and slides for **ENCH483 / ENCH683
+Electrochemical Engineering** — an elective course in Chemical and Process
+Engineering at the University of Canterbury.
+
+| Lecture | Notes | Slides |
+|---------|-------|--------|
+| 1 — Introduction | [Notes](L01-intro.qmd) | [Slides](../../_slides/ElectrochemEng/L01-intro.html){target="_blank"} |

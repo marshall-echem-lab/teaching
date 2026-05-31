@@ -1,0 +1,72 @@
+name: Build and Deploy Teaching Site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Python dependencies
+        run: pip install -r py_requirements.txt
+
+      - name: Install Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Generate course glossaries
+        run: python collect_definitions.py
+
+      # ── Render slide decks ────────────────────────────────────────────────
+      # Uses _quarto-slides.yml profile: outputs standalone Reveal.js HTML
+      # files to _slides/, one per lecture .qmd file.
+      - name: Render slide decks
+        run: quarto render --profile slides --config _quarto-slides.yml
+
+      # ── Render textbook ───────────────────────────────────────────────────
+      # Uses default _quarto.yml: outputs the full Quarto book to _site/.
+      # Slides in _slides/ are copied into _site/_slides/ so relative links
+      # from the book index pages resolve correctly on GitHub Pages.
+      - name: Render textbook
+        run: quarto render
+
+      - name: Copy slides into site output
+        run: |
+          mkdir -p _site/_slides
+          cp -r _slides/* _site/_slides/
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,49 @@
+# _quarto-slides.yml
+# Used with: quarto render --profile slides
+# Renders every chapter .qmd as a standalone Reveal.js HTML file
+# into _slides/ — independent of the book build.
+
+project:
+  type: default
+  output-dir: _slides
+  render:
+    - "EnergyBalances/L*-*.qmd"
+    - "ElectrochemEng/L*-*.qmd"
+
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    controls: true
+    progress: true
+    smaller: false
+    scrollable: false
+    html-math-method: mathjax
+    embed-resources: true
+    width: 1050
+    height: 700
+    margin: 0.1
+    navigationMode: linear
+    transition: none
+    include-after-body:
+      text: |
+        <script>
+          // Re-run MathJax typesetting on every slide change and on initial ready.
+          // Fixes a race condition on iOS/WebKit where MathJax loads asynchronously
+          // and may not have finished before the first slide is painted.
+          function retypeset() {
+            if (window.MathJax && MathJax.typesetPromise) {
+              MathJax.typesetPromise();
+            }
+          }
+          window.addEventListener('load', function () {
+            if (typeof Reveal !== 'undefined') {
+              Reveal.on('ready', retypeset);
+              Reveal.on('slidechanged', retypeset);
+            }
+          });
+        </script>
+
+execute:
+  freeze: auto
+  cache: true

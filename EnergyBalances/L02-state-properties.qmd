@@ -1,0 +1,29 @@
+---
+title: "State Properties and Changes"
+subtitle: "ENCH291 — Lecture 2"
+---
+
+## State Properties
+
+State properties are things like temperature and pressure, $P$.
+
+::: {.content-visible when-format="html"}
+Intensive and extensive properties...
+:::
+
+::: {.callout-note}
+## 📘 Key Term
+
+**Gibbs Energy** (*G*) — a thermodynamic state function defined as $G = H - TS$.
+:::
+
+::: {.content-visible when-format="revealjs"}
+**Intensive vs Extensive Properties:**
+
+- **Intensive:** Size independent, e.g. temperature, density
+- **Extensive:** Size dependent, e.g. volume
+:::
+
+## State Changes and Process Path
+
+One of the very useful attributes of state properties is that...

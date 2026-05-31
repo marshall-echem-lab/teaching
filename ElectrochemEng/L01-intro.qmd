@@ -1,0 +1,9 @@
+---
+title: "Introduction to Electrochemical Engineering"
+subtitle: "Lecture 1"
+---
+
+## What is Electrochemistry?
+
+Electrochemistry is the study of chemical processes that cause electrons to
+move — or conversely, how electrical energy drives chemical reactions.

@@ -1,0 +1,23 @@
+/* ============================================================
+   Key Term callout styling
+   Targets :::{.callout-note} blocks used for key term definitions.
+   Quarto renders .callout-note as div.callout-note
+   ============================================================ */
+
+/* Slightly warmer blue tint for key term boxes in the textbook */
+div.callout-note.callout {
+  border-left-color: #2980b9;
+}
+
+div.callout-note > .callout-header {
+  background-color: #d6eaf8;
+  color: #1a5276;
+}
+
+div.callout-note > .callout-body {
+  background-color: #eef6fb;
+}
+
+div.callout-note > .callout-body strong {
+  color: #1a5276;
+}

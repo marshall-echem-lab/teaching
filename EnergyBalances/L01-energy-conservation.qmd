@@ -1,0 +1,225 @@
+---
+title: "Energy Conservation"
+subtitle: "ENCH291 — Lecture 1"
+---
+
+## Energy is conserved and the Laws of Thermodynamics
+
+The 1st Law of Thermodynamics = energy is conserved.
+
+::: {.content-visible when-format="html"}
+This law states that energy is conserved but can be converted between many
+different forms. During these conversions, energy is neither created nor
+destroyed. In addition to this first law of thermodynamics, the second law
+imposes a further restriction: during any energy conversion process, a portion
+of the energy is dissipated into a less useful form, typically heat.
+:::
+
+::: {.content-visible when-format="revealjs"}
+- Energy is not created or destroyed
+- Lots of types of energy (potential, kinetic, internal, heat, work)
+- Energy can be converted between different forms
+:::
+
+::: {.content-visible when-format="html"}
+::: {.callout-note collapse="true"}
+## What about nuclear?
+
+OK — nuclear processes violate our simple 1st Law requirement that energy is
+conserved. Nuclear processes also violate the principle of conservation of mass.
+During nuclear reactions, mass is converted to energy. So what really matters
+is not conservation of mass or conservation of energy separately, but the
+conservation of total mass–energy. This is captured by Einstein's relation
+$E = mc^2$, which shows that mass is a form of energy.
+:::
+:::
+
+---
+
+::: {.content-visible when-format="revealjs"}
+- Energy is not created or destroyed
+- Lots of types of energy (potential, kinetic, internal, heat, work)
+- Energy can be converted between different forms
+:::
+
+::: {.callout-note}
+## 📘 Key Term
+
+**Internal Energy** (*U*) — a thermodynamic state function; how energy is stored within matter.
+:::
+
+---
+
+## Example: Hydroelectric Potential Energy
+
+A reservoir sits **50 m** above the turbines. Calculate the potential energy
+available from **1000 kg** of water.
+
+```{python}
+#| echo: true
+
+# Given
+m = 1000   # mass of water (kg)
+g = 9.81   # gravitational acceleration (m/s²)
+z = 50     # height above turbines (m)
+
+# Potential energy
+PE = m * g * z
+
+print(f"PE = m × g × z")
+print(f"PE = {m} × {g} × {z}")
+print(f"PE = {PE:,.0f} J")
+```
+
+---
+
+::: {.callout-note}
+## 📘 Key Term
+
+**Enthalpy** (*H*) — a thermodynamic state function defined as $H = U + PV$.
+:::
+
+## The General Energy Balance
+
+$$
+\dot{Q} - \dot{W}_s = \dot{m} \left[ \Delta h + \frac{\Delta u^2}{2} + g \Delta z \right]
+$$
+
+::: {.content-visible when-format="html"}
+where $\dot{Q}$ is heat input, $\dot{W}_s$ is shaft work, $\dot{m}$ is the
+mass flow rate, $\Delta h$ is the specific enthalpy change, $\Delta u^2/2$
+is the kinetic energy change, and $g \Delta z$ is the potential energy change.
+:::
+
+::: {.content-visible when-format="revealjs"}
+**Key assumptions:**
+
+- Steady state: accumulation = 0
+- Single inlet, single outlet
+- Neglect kinetic and potential energy (most cases)
+:::
+
+::: {.content-visible when-format="html"}
+::: {.callout-note collapse="true"}
+## Why these assumptions?
+
+In most chemical engineering equipment — heat exchangers, reactors, distillation
+columns — fluid velocities are moderate and elevation differences are small, so
+kinetic and potential energy terms are negligible compared to enthalpy changes.
+This simplifies the balance to:
+
+$$\dot{Q} - \dot{W}_s = \dot{m} \, \Delta h$$
+
+which is the form used in the vast majority of problems.
+:::
+:::
+
+---
+
+::: {.content-visible when-format="revealjs"}
+**Simplified form (neglect KE and PE):**
+:::
+
+$$\dot{Q} - \dot{W}_s = \dot{m} \, \Delta h$$
+
+## Enthalpy and Heat Capacity
+
+For a single-phase stream with no reaction:
+
+$$
+\Delta h = \int_{T_1}^{T_2} C_p(T) \, dT
+$$
+
+For an ideal gas with constant $C_p$ this simplifies to:
+
+$$
+\Delta h = C_p \left( T_2 - T_1 \right)
+$$
+
+::: {.content-visible when-format="html"}
+These two expressions are the starting point for nearly all energy balance
+calculations. The integral form is exact; the simplified form assumes $C_p$
+is constant over the temperature range of interest.
+:::
+
+::: {.content-visible when-format="revealjs"}
+**In practice:**
+
+- Use $C_p$ tables or polynomial fits from NIST/Perry's
+- $C_p$ varies significantly with $T$ for polyatomic gases
+- For liquids, $C_p \approx$ constant is usually acceptable
+:::
+
+::: {.content-visible when-format="html"}
+::: {.callout-note collapse="true"}
+## Temperature dependence of $C_p$
+
+For real gases, $C_p$ is fitted as a polynomial in $T$:
+
+$$C_p(T) = a + bT + cT^2 + dT^3$$
+
+Coefficients are tabulated in Perry's Chemical Engineers' Handbook.
+For liquids, a mean value $\bar{C}_p$ over the temperature range is usually
+accurate to within 2–3%.
+:::
+:::
+
+## Worked Example — Heat Exchanger
+
+**Problem:** Cooling water enters at 20 °C and leaves at 55 °C.
+Mass flow rate is 2.5 kg/s. Find $\dot{Q}$.
+
+::: {.content-visible when-format="html"}
+**Steps:**
+
+1. Identify streams in and out
+2. State assumptions (steady, neglect KE/PE)
+3. Look up $C_p$
+4. Substitute and check units
+:::
+
+::: {.content-visible when-format="revealjs"}
+**Steps:**
+
+1. Identify streams in and out
+2. State assumptions (steady, neglect KE/PE)
+3. Look up $C_p$
+4. Substitute and check units
+:::
+
+```{python}
+#| echo: true
+
+m_dot = 2.5    # mass flow rate (kg/s)
+Cp    = 4.18   # specific heat capacity of water (kJ/kg·K)
+T_in  = 20     # inlet temperature (°C)
+T_out = 55     # outlet temperature (°C)
+
+Q_dot = m_dot * Cp * (T_out - T_in)
+
+print(f"Q̇ = ṁ × Cₚ × ΔT")
+print(f"Q̇ = {m_dot} × {Cp} × ({T_out} − {T_in})")
+print(f"Q̇ = {Q_dot:.2f} kW")
+```
+
+::: {.content-visible when-format="html"}
+Here we assume steady state, negligible shaft work, and constant $C_p$ for
+liquid water. The result tells us how much heat the exchanger must transfer
+per second to achieve the specified temperature rise.
+
+::: {.callout-note collapse="true"}
+## Full solution with unit checks
+
+**Given:** $\dot{m} = 2.5$ kg/s, $T_{in} = 20$ °C, $T_{out} = 55$ °C,
+$C_p = 4.18$ kJ kg$^{-1}$ K$^{-1}$
+
+$$\dot{Q} = 2.5 \times 4.18 \times (55 - 20) = 365.75 \text{ kW}$$
+
+The steam condensation side requires a separate balance using latent heat
+$\lambda$:
+
+$$\dot{Q} = \dot{m}_{steam} \cdot \lambda$$
+
+which gives the required steam flow rate once $\dot{Q}$ is known.
+:::
+:::
