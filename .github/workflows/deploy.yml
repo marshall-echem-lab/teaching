@@ -58,6 +58,9 @@ jobs:
               -M transition:none
           done
 
+      - name: Debug slide output
+        run: find _slides -type f | sort
+
       - name: Render textbook
         run: quarto render
 
