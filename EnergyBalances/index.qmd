@@ -10,7 +10,7 @@ Slides open in a new tab. Use arrow keys or click the arrows to navigate.
 
 | Lecture | Notes | Slides |
 |---------|-------|--------|
-| 1 — Energy Conservation | [Notes](L01-energy-conservation.qmd) | [Slides](../../_slides/EnergyBalances/L01-energy-conservation.html){target="_blank"} |
-| 2 — State Properties and Changes | [Notes](L02-state-properties.qmd) | [Slides](../../_slides/EnergyBalances/L02-state-properties.html){target="_blank"} |
+| 1 — Energy Conservation | [Notes](L01-energy-conservation.qmd) | [Slides](/teaching/_slides/EnergyBalances/L01-energy-conservation.html){target="_blank"} |
+| 2 — State Properties and Changes | [Notes](L02-state-properties.qmd) | [Slides](/teaching/_slides/EnergyBalances/L02-state-properties.html){target="_blank"} |
 | Key Terms | [Glossary](definitions.qmd) | — |
 | Useful Information | [Reference](useful-info.qmd) | — |

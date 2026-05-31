@@ -5,6 +5,7 @@ project:
 book:
   title: "Teaching Materials"
   author: "Prof Aaron Marshall"
+  site-url: https://marshall-echem-lab.github.io/teaching
   repo-url: https://github.com/marshall-echem-lab/teaching
   repo-actions: [issue]
   chapters:
