@@ -38,7 +38,7 @@ def is_course_dir(path: Path) -> bool:
     return path.is_dir() and path.name not in SKIP_DIRS and not path.name.startswith(".")
 
 
-def extract_keyterms(md_path: Path) -> list[tuple[str, str]]:
+def extract_keyterms(md_path: Path) -> list[tuple[str, str, str]]:
     """
     Parse a chapter .md file and return a list of (term, definition) pairs
     found in :::admonition / :class: keyterm blocks.
@@ -88,18 +88,18 @@ def extract_keyterms(md_path: Path) -> list[tuple[str, str]]:
 
             # Extract term/definition pairs from lines like:
             #   **Term** — definition text
+            #   **Term** (*H*) — definition text
             for l in inner:
                 # Skip option lines and blank lines
                 if re.match(r'^\s*:(class|name):', l) or not l.strip():
                     continue
-                # Match **Term** [optional symbol] — definition  (em-dash or double hyphen)
-                # Handles: **Enthalpy** (*H*) — definition
-                # Handles: **State Function** — definition
-                m = re.match(r'^\s*\*\*(.+?)\*\*.*?(?:—|-{1,2})\s*(.*)', l)
+                # Capture: **Term** [optional (*symbol*)] — definition
+                m = re.match(r'^\s*\*\*(.+?)\*\*(?:\s*(\([^)]*\)))?\s*(?:—|-{1,2})\s*(.*)', l)
                 if m:
                     term = m.group(1).strip()
-                    defn = m.group(2).strip()
-                    terms.append((term, defn))
+                    symbol = m.group(2).strip() if m.group(2) else ""
+                    defn = m.group(3).strip()
+                    terms.append((term, symbol, defn))
         else:
             i += 1
 
@@ -108,12 +108,12 @@ def extract_keyterms(md_path: Path) -> list[tuple[str, str]]:
 
 def build_glossary(
     course_dir: Path,
-    all_terms: list[tuple[str, str, str]]
+    all_terms: list[tuple[str, str, str, str]]
 ) -> str:
     """
     Render the definitions file content.
 
-    all_terms: [(term, definition, source_filename), ...]
+    all_terms: [(term, symbol, definition, source_filename), ...]
     """
     course_name = course_dir.name
     lines = [
@@ -129,8 +129,9 @@ def build_glossary(
         "",
     ]
 
-    for term, defn, source in sorted(all_terms, key=lambda x: x[0].lower()):
-        lines.append(f"**{term}**")
+    for term, symbol, defn, source in sorted(all_terms, key=lambda x: x[0].lower()):
+        term_line = f"**{term}** {symbol}".rstrip() if symbol else f"**{term}**"
+        lines.append(term_line)
         lines.append(f":   {defn}")
         lines.append("")
 
@@ -161,8 +162,8 @@ def process_course(course_dir: Path) -> int:
 
     for chapter in chapter_files:
         terms = extract_keyterms(chapter)
-        for term, defn in terms:
-            all_terms.append((term, defn, chapter.name))
+        for term, symbol, defn in terms:
+            all_terms.append((term, symbol, defn, chapter.name))
             total += 1
 
     if total == 0:

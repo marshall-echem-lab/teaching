@@ -124,9 +124,29 @@ dropdown in the textbook — students click to expand.
 :::
 ```
 
----
+### 5. Key term definition — shown in BOTH book and slides
 
-## Slide Structure
+```markdown
+:::admonition 📘 Key Terms
+:class: keyterm
+
+**Enthalpy** (*H*) — A thermodynamic state function defined as $H = U + PV$
+
+**Internal Energy** (*U*) — The total energy stored within a system
+:::
+```
+
+Renders as a blue styled callout box in the textbook and as a `callout-note`
+box in slides. Multiple terms can appear in one block, or use one block per term.
+
+**Format rules:**
+- `:class: keyterm` is required exactly as shown
+- Each term must follow the pattern `**Term** (*symbol*) — definition`
+- The symbol e.g. `(*H*)` is optional — omit it for terms without one
+- The separator must be an em-dash `—` (Mac: `Option+Shift+-`, or copy: —)
+- Terms are automatically collected into a `CourseName-definitions.md` glossary on every deploy
+
+---
 
 ### Normal slide (new section in book AND new slide)
 
@@ -187,10 +207,13 @@ root: ench291-index
 chapters:
   - file: ench291-L01-topic
   - file: ench291-L02-topic
+  - file: ench291-definitions
+    title: Key Terms
 ```
 
 Add new lectures here in the order you want them to appear.
-Filenames without the `.md` extension.
+Filenames without the `.md` extension. The `ench291-definitions` file is
+auto-generated — just add the entry to `_toc.yml` and it will appear in the nav.
 
 ---
 
@@ -198,14 +221,16 @@ Filenames without the `.md` extension.
 
 Every push to `main` automatically:
 
-1. Runs `md_to_slides.py` on all lecture `.md` files
-2. Renders Quarto Reveal.js slide decks (`.html`)
-3. Builds the MyST textbook
-4. Copies slide HTML files to `/slides/`
-5. Deploys everything to GitHub Pages
+1. Runs `collect_definitions.py` — collects keyterms and writes `CourseName-definitions.md` into each course folder
+2. Runs `md_to_slides.py` on all lecture `.md` files
+3. Renders Quarto Reveal.js slide decks (`.html`)
+4. Builds the MyST textbook
+5. Copies slide HTML files to `/slides/`
+6. Deploys everything to GitHub Pages
 
 **Files excluded from slide generation:**
 - `*-index.md` (course index pages)
+- `*-definitions.md` (auto-generated glossary pages)
 - `index.md` (generic index files)
 - Anything in `_build/` or `.github/`
 
