@@ -1,4 +1,6 @@
 jupyter
+jupyter-cache
+nbformat
 numpy
 matplotlib
 scipy
