@@ -42,6 +42,7 @@ jobs:
             -name 'L*.qmd' -print | while read f; do
             dir=$(dirname "$f")
             quarto render "$f" \
+              --no-project \
               --to revealjs \
               --output-dir "_slides/$dir" \
               -M embed-resources:true \
