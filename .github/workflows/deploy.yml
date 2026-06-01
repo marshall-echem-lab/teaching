@@ -36,38 +36,23 @@ jobs:
       - name: Generate course glossaries
         run: python collect_definitions.py
 
+      # ── Render slide decks ────────────────────────────────────────────────
+      # The slides/ folder is a separate Quarto project (type: default) that
+      # references lecture .qmd files via relative paths. Running quarto render
+      # here is completely independent of the book project at the repo root.
+      # To add a new course, add its L*.qmd glob to slides/_quarto.yml render list.
       - name: Render slide decks
-        run: |
-          find . -path './_site' -prune -o -path './_slides' -prune -o \
-            -name 'L*.qmd' -print | while read f; do
-            dir=$(dirname "$f")
-            quarto render "$f" \
-              --no-project \
-              --to revealjs \
-              --output-dir "_slides/$dir" \
-              -M embed-resources:true \
-              -M slide-number:true \
-              -M controls:true \
-              -M progress:true \
-              -M theme:simple \
-              -M html-math-method:mathjax \
-              -M width:1050 \
-              -M height:700 \
-              -M margin:0.1 \
-              -M navigationMode:linear \
-              -M transition:none
-          done
+        run: quarto render slides/
 
-      - name: Debug slide output
-        run: find _slides -type f | sort
-
+      # ── Render textbook ───────────────────────────────────────────────────
       - name: Render textbook
         run: quarto render
 
+      # Copy slide output into the book site so everything deploys together
       - name: Copy slides into site output
         run: |
           mkdir -p _site/_slides
-          cp -r _slides/* _site/_slides/
+          cp -r slides/_output/* _site/_slides/
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
