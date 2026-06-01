@@ -40,7 +40,7 @@ repeat slide title (enclose in htmpl comment to avoid rendering in HTML)
 -->
 
 
-### Laws of Thermodynamics
+## Laws of Thermodynamics
 The 1st Law of Thermodynamics = energy is conserved.
 
 ::: {.content-visible when-format="revealjs"}
@@ -58,7 +58,7 @@ imposes a further restriction: during any energy conversion process, a portion
 of the energy is dissipated into a less useful form, typically heat.
 
 ::: {.callout-note collapse="true"}
-## What about nuclear?
+### What about nuclear?
 OK — nuclear processes violate our simple 1st Law requirement that energy is
 conserved. Nuclear processes also violate the principle of conservation of mass.
 During nuclear reactions, mass is converted to energy. So what really matters
@@ -71,7 +71,7 @@ $E = mc^2$, which shows that mass is a form of energy.
 
 ---
 
-### Types of Energy
+## Types of Energy
 
 There are many different types of energy relevant to chemical engineering. 
 
@@ -83,22 +83,22 @@ There are many different types of energy relevant to chemical engineering.
 
 ::: {.content-visible unless-format="revealjs"}
 The most common types of energy we deal with are potential energy (due to elevation), kinetic energy (due to motion), internal energy (stored within matter).
-#### Potential Energy ($E_p$)
+### Potential Energy ($E_p$)
 $E_p = mgz$
 where $m$ is mass, $g$ is gravitational acceleration, $z$ is height above a reference point.
 
-#### Kinetic Energy ($E_k$)
-$E_k = \frac{1}{2}m\mathbf{v}^2$$
+### Kinetic Energy ($E_k$)
+$E_k = \frac{1}{2}m\mathbf{v}^2$
 where $m$ is mass and $\mathbf{v}$ is velocity. Note that in this course we use the bold typeface $\mathbf{v}$ to denote velocity. This is becuase we will use $v$ to denote specific volume (units of m³/kg or m³/mol) later on, and we want to avoid confusion.
 
-#### Internal Energy ($U$)
+### Internal Energy ($U$)
 Internal energy is the energy stored within matter, including chemical bonds, molecular vibrations, and other microscopic forms of energy. 
 
 In most cases we will be concerned with changes in internal energy, which are often more conveniently expressed in terms of enthalpy ($H$) rather than $U$. We will discuss this in more detail later on. 
 :::
 
 ::: {.callout-note}
-## Key Term
+### Key Term
 **Internal Energy** ($U$) — a thermodynamic state function; how energy is stored within matter.
 :::
 
@@ -107,6 +107,7 @@ In many cases we will find that potential and kinetic energy changes are negligi
 
 ::: {.content-visible when-format="revealjs"}
 Exemptions may include:
+
 - Pumping fluids, here the $E_p$ or $E_k$ terms may be significant
 - High-speed flows, e.g. gas turbines, where $E_k$ is significant
 - Large elevation changes, e.g. hydroelectric dams, where $E_p$ is significant
@@ -160,8 +161,7 @@ print(f"PE = {PE:,.0f} J")
 ---
 
 ::: {.callout-note}
-## 📘 Key Term
-
+### Key Term
 **Enthalpy** ($H$) — a thermodynamic state function defined as $H = U + PV$.
 :::
 
