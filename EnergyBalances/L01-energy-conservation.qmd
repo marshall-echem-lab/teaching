@@ -7,7 +7,7 @@ subtitle: "ENCH291 — Lecture 1"
 
 The 1st Law of Thermodynamics = energy is conserved.
 
-::: {.content-visible when-format="html"}
+::: {.content-visible unless-format="revealjs"}
 This law states that energy is conserved but can be converted between many
 different forms. During these conversions, energy is neither created nor
 destroyed. In addition to this first law of thermodynamics, the second law
