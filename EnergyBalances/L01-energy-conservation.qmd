@@ -29,7 +29,7 @@ Call out box content goes here. This can be used for additional explanations, ex
 :::
 
 ::: {.callout-note}
-## 📘 Key Term
+## Key Term
 **Internal Energy** ($U$) — a thermodynamic state function; how energy is stored within matter.
 :::
 
@@ -98,7 +98,7 @@ In most cases we will be concerned with changes in internal energy, which are of
 :::
 
 ::: {.callout-note}
-## 📘 Key Term
+## Key Term
 **Internal Energy** ($U$) — a thermodynamic state function; how energy is stored within matter.
 :::
 
@@ -141,7 +141,7 @@ available from **1000 kg** of water.
 eval: true
 # output: true
 ```{python}
-#| echo: true
+#| output: true
 
 
 # Given
