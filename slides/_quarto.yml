@@ -2,8 +2,7 @@ project:
   type: default
   output-dir: _output
   render:
-    - ../EnergyBalances/L*.qmd
-    - ../ElectrochemEng/L*.qmd
+    - "*/L*.qmd"
 
 format:
   revealjs:

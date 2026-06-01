@@ -37,18 +37,26 @@ jobs:
         run: python collect_definitions.py
 
       # ── Render slide decks ────────────────────────────────────────────────
-      # The slides/ folder is a separate Quarto project (type: default) that
-      # references lecture .qmd files via relative paths. Running quarto render
-      # here is completely independent of the book project at the repo root.
-      # To add a new course, add its L*.qmd glob to slides/_quarto.yml render list.
+      # Copy each course folder into slides/ so Quarto can render them as a
+      # self-contained default project (no cross-directory file references).
+      # The copies are temporary — only the rendered HTML output is kept.
       - name: Render slide decks
-        run: quarto render slides/
+        run: |
+          find . -mindepth 1 -maxdepth 1 -type d \
+            ! -name slides ! -name _site ! -name _freeze \
+            ! -name _static ! -name .git ! -name .github \
+            | while read course; do
+              cp -r "$course" slides/
+          done
+          quarto render slides/
+          find slides/ -mindepth 1 -maxdepth 1 -type d \
+            ! -name _output ! -name _freeze \
+            | xargs rm -rf
 
       # ── Render textbook ───────────────────────────────────────────────────
       - name: Render textbook
         run: quarto render
 
-      # Copy slide output into the book site so everything deploys together
       - name: Copy slides into site output
         run: |
           mkdir -p _site/_slides
