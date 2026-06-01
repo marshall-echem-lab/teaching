@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+
+# Quarto build outputs
+_site/
+_slides/
+_freeze/
+slides/_output/
+slides/_freeze/
+slides/EnergyBalances/
+slides/ElectrochemEng/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Jupyter
+.ipynb_checkpoints/
