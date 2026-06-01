@@ -37,10 +37,31 @@ $E = mc^2$, which shows that mass is a form of energy.
 
 ---
 
+### Types of Energy
+
+There are many different types of energy relevant to chemical engineering. 
+
+::: {.content-visible unless-format="revealjs"}
+The most common types of energy we deal with are potential energy (due to elevation), kinetic energy (due to motion), internal energy (stored within matter), heat (energy transfer due to temperature difference), and work (energy transfer due to force acting over a distance).
+
+#### Potential Energy (PE)
+$$PE = mg(z - z_{ref})$$
+where $m$ is mass, $g$ is gravitational acceleration, $z$ is elevation, and $z_{ref}$ is a reference elevation.
+
+#### Kinetic Energy (KE)
+$$KE = \frac{1}{2}m\mathbf{v}^2$$
+where $m$ is mass and $\mathbf{v}$ is velocity. Note that in this course we use the bold typeface $\mathbf{v}$ to denote velocity. This is becuase we will use $v$ to denote specific volume (units of m³/kg or m³/mol) later on, and we want to avoid confusion.
+
+#### Internal Energy (U)
+Internal energy is the energy stored within matter, including chemical bonds, molecular vibrations, and other microscopic forms of energy. 
+:::
+
 ::: {.content-visible when-format="revealjs"}
-- Energy is not created or destroyed
-- Lots of types of energy (potential, kinetic, internal, heat, work)
-- Energy can be converted between different forms
+- Potential energy (PE) = $mg(z-z_{ref})$
+- Kinetic energy (KE) = $\frac{1}{2}m\mathbf{v}^2$
+- Internal energy ($U$) = energy stored in matter
+- Heat ($Q$) = energy transfer due to temperature difference
+- Work ($W$) = energy transfer due to force acting over a distance
 :::
 
 ::: {.callout-note}
@@ -49,6 +70,7 @@ $E = mc^2$, which shows that mass is a form of energy.
 **Internal Energy** (*U*) — a thermodynamic state function; how energy is stored within matter.
 :::
 
+In most cases we will be concerned with changes in internal energy, which are often more conveniently expressed in terms of enthalpy ($H$) rather than $U$. We will discuss this in more detail later on. We will also see that for most chemical engineering applications, changes in kinetic and potential energy are negligible compared to changes in internal energy (or enthalpy), so we will often neglect KE and PE terms in our energy balances.
 ---
 
 ## Example: Hydroelectric Potential Energy
@@ -56,9 +78,11 @@ $E = mc^2$, which shows that mass is a form of energy.
 A reservoir sits **50 m** above the turbines. Calculate the potential energy
 available from **1000 kg** of water.
 
+eval: true
+# output: true
 ```{python}
 #| echo: true
-# eval: true
+
 
 # Given
 m = 1000   # mass of water (kg)
