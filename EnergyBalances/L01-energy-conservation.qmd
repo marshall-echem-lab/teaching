@@ -33,11 +33,9 @@ Call out box content goes here. This can be used for additional explanations, ex
 **Internal Energy** ($U$) — a thermodynamic state function; how energy is stored within matter.
 :::
 
-<!-- repeat slide title -->
-
+repeat slide title (enclose in htmpl comment to avoid rendering in HTML)
 
 --- (end of section or slide) 
-
 
 -->
 
@@ -96,8 +94,7 @@ where $m$ is mass and $\mathbf{v}$ is velocity. Note that in this course we use 
 #### Internal Energy ($U$)
 Internal energy is the energy stored within matter, including chemical bonds, molecular vibrations, and other microscopic forms of energy. 
 
-Entha
-In most cases we will be concerned with changes in internal energy, which are often more conveniently expressed in terms of enthalpy ($H$) rather than $U$. We will discuss this in more detail later on. We will also see that for most chemical engineering applications, changes in kinetic and potential energy are negligible compared to changes in internal energy (or enthalpy), so we will often neglect KE and PE terms in our energy balances.
+In most cases we will be concerned with changes in internal energy, which are often more conveniently expressed in terms of enthalpy ($H$) rather than $U$. We will discuss this in more detail later on. 
 :::
 
 ::: {.callout-note}
@@ -105,9 +102,36 @@ In most cases we will be concerned with changes in internal energy, which are of
 **Internal Energy** ($U$) — a thermodynamic state function; how energy is stored within matter.
 :::
 
+<!-- repeat slide title -->
+In many cases we will find that potential and kinetic energy changes are negligible compared to changes in internal energy.
+
+::: {.content-visible when-format="revealjs"}
+Exemptions may include:
+- Pumping fluids, here the $E_p$ or $E_k$ terms may be significant
+- High-speed flows, e.g. gas turbines, where $E_k$ is significant
+- Large elevation changes, e.g. hydroelectric dams, where $E_p$ is significant
+:::
+
+::: {.content-visible unless-format="revealjs"}
+This means we will often neglect $E_p$ and $E_k$ terms in our energy balances. This is a common assumption in chemical engineering applications, where fluid velocities are moderate and elevation differences are small. There are exceptions to this, such as in pumping fluids, high-speed flows (e.g. gas turbines), or large elevation changes (e.g. hydroelectric dams), where kinetic and potential energy changes can be significant and must be included in the energy balance.
+:::
+
+<!-- repeat slide title -->
+
+Single sentence appears in book and slides
+
+::: {.content-visible when-format="revealjs"}
+- Slide bullet point
+:::
+
+::: {.content-visible unless-format="revealjs"}
+Book only content
+
+:::
 
 
-heat (energy transfer due to temperature difference), and work (energy transfer due to force acting over a distance).
+
+
 
 ## Example: Hydroelectric Potential Energy
 
