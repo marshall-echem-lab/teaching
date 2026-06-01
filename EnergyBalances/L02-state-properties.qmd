@@ -13,8 +13,7 @@ Intensive and extensive properties...
 
 ::: {.callout-note}
 ## 📘 Key Term
-
-**Gibbs Energy** (*G*) — a thermodynamic state function defined as $G = H - TS$.
+**Gibbs Energy** ($G$) — a thermodynamic state function defined as $G = H - TS$.
 :::
 
 ::: {.content-visible when-format="revealjs"}

@@ -8,18 +8,18 @@ is a heading containing "Key Term" or "Key Terms", and writes a
 definitions.qmd glossary file into each course folder.
 
 Key term block format (in .qmd source files):
-    :::{.callout-note}
-    ## 📘 Key Term
+    ::: {.callout-note}
+    ## Key Term
 
-    **Term** (*symbol*) — definition text
+    **Term** ($U$) — definition text
     :::
 
     OR for multiple terms in one block:
-    :::{.callout-note}
-    ## 📘 Key Terms
+    ::: {.callout-note}
+    ## Key Terms
 
-    **Term 1** (*H*) — first definition
-    **Term 2** — second definition
+    **Term 1** ($H$) — first definition
+    **Term 2** — second definition (symbol is optional)
     :::
 
 Usage:
@@ -54,12 +54,14 @@ def extract_keyterms(qmd_path: Path) -> list[tuple[str, str, str]]:
     tuples found in :::{.callout-note} blocks whose heading contains 'Key Term'.
 
     Expected format:
-        :::{.callout-note}
-        ## 📘 Key Term
+        ::: {.callout-note}
+        ## Key Term
 
-        **Term** (*symbol*) — definition text
+        **Term** ($U$) — definition text
         :::
-    """
+
+    The symbol (e.g. $U$) is optional. It must be wrapped in parentheses
+    immediately after the bold term: **Term** ($U$) — definition."""
     text = qmd_path.read_text(encoding="utf-8")
     lines = text.splitlines()
     terms = []
@@ -137,7 +139,9 @@ def build_glossary(course_dir: Path, all_terms: list[tuple[str, str, str, str]])
     ]
 
     for term, symbol, defn, source in sorted(all_terms, key=lambda x: x[0].lower()):
-        term_line = f"**{term}** {symbol}".rstrip() if symbol else f"**{term}**"
+        # symbol is stored as e.g. "($U$)" — strip outer parens for clean rendering
+        symbol_rendered = symbol[1:-1] if symbol.startswith("(") and symbol.endswith(")") else symbol
+        term_line = f"**{term}** {symbol_rendered}".rstrip() if symbol_rendered else f"**{term}**"
         lines.append(term_line)
         lines.append(f":   {defn}")
         lines.append("")

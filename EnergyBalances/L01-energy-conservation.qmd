@@ -12,12 +12,37 @@ subtitle: "ENCH291 — Lecture 1"
 ---
 
 ### Section or Slide title
+Single sentence overview of the section or slide.
+
+::: {.content-visible when-format="revealjs"}
+- Slide bullet points
+:::
+
+::: {.content-visible unless-format="revealjs"} --- Main section text
+Long form content for non-slide formats (e.g. HTML) goes here. This can include multiple paragraphs, equations, images, etc. The content will be hidden in slide formats
+
+::: {.callout-note collapse="true"} -- Optional callout box for additional notes or details
+## Call out box title
+Call out box content goes here. This can be used for additional explanations, examples, or any information that is relevant but not essential to the main flow of the lecture.
+:::
+
+:::
+
+::: {.callout-note}
+## 📘 Key Term
+**Internal Energy** ($U$) — a thermodynamic state function; how energy is stored within matter.
+:::
+
+<!-- repeat slide title -->
+
+
+--- (end of section or slide) 
+
 
 -->
 
 
 ### Laws of Thermodynamics
-
 The 1st Law of Thermodynamics = energy is conserved.
 
 ::: {.content-visible when-format="revealjs"}
@@ -36,7 +61,6 @@ of the energy is dissipated into a less useful form, typically heat.
 
 ::: {.callout-note collapse="true"}
 ## What about nuclear?
-
 OK — nuclear processes violate our simple 1st Law requirement that energy is
 conserved. Nuclear processes also violate the principle of conservation of mass.
 During nuclear reactions, mass is converted to energy. So what really matters
@@ -44,6 +68,7 @@ is not conservation of mass or conservation of energy separately, but the
 conservation of total mass–energy. This is captured by Einstein's relation
 $E = mc^2$, which shows that mass is a form of energy.
 :::
+
 :::
 
 ---
@@ -53,41 +78,34 @@ $E = mc^2$, which shows that mass is a form of energy.
 There are many different types of energy relevant to chemical engineering. 
 
 ::: {.content-visible when-format="revealjs"}
-- Potential energy (PE) = $mg(z-z_{ref})$
-- Kinetic energy (KE) = $\frac{1}{2}m\mathbf{v}^2$
-- Internal energy ($U$) = energy stored in matter
+- Potential energy, $E_p = mgz$
+- Kinetic energy, $E_k = \frac{1}{2}m\mathbf{v}^2$
+- Internal energy, $U$ = energy stored in matter
 :::
 
 ::: {.content-visible unless-format="revealjs"}
 The most common types of energy we deal with are potential energy (due to elevation), kinetic energy (due to motion), internal energy (stored within matter).
+#### Potential Energy ($E_p$)
+$E_p = mgz$
+where $m$ is mass, $g$ is gravitational acceleration, $z$ is height above a reference point.
 
-#### Potential Energy (PE)
-$$PE = mg(z - z_{ref})$$
-where $m$ is mass, $g$ is gravitational acceleration, $z$ is elevation, and $z_{ref}$ is a reference elevation.
-
-#### Kinetic Energy (KE)
-$$KE = \frac{1}{2}m\mathbf{v}^2$$
+#### Kinetic Energy ($E_k$)
+$E_k = \frac{1}{2}m\mathbf{v}^2$$
 where $m$ is mass and $\mathbf{v}$ is velocity. Note that in this course we use the bold typeface $\mathbf{v}$ to denote velocity. This is becuase we will use $v$ to denote specific volume (units of m³/kg or m³/mol) later on, and we want to avoid confusion.
 
 #### Internal Energy ($U$)
 Internal energy is the energy stored within matter, including chemical bonds, molecular vibrations, and other microscopic forms of energy. 
 
+Entha
 In most cases we will be concerned with changes in internal energy, which are often more conveniently expressed in terms of enthalpy ($H$) rather than $U$. We will discuss this in more detail later on. We will also see that for most chemical engineering applications, changes in kinetic and potential energy are negligible compared to changes in internal energy (or enthalpy), so we will often neglect KE and PE terms in our energy balances.
 :::
 
-
-
 ::: {.callout-note}
 ## 📘 Key Term
-
 **Internal Energy** ($U$) — a thermodynamic state function; how energy is stored within matter.
 :::
 
-::: {.content-visible unless-format="revealjs"}
 
-:::
-
----
 
 heat (energy transfer due to temperature difference), and work (energy transfer due to force acting over a distance).
 

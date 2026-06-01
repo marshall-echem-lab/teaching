@@ -48,6 +48,7 @@ jobs:
             | while read course; do
               cp -r "$course" slides/
           done
+          python inject_slide_titles.py slides/
           quarto render slides/
           find slides/ -mindepth 1 -maxdepth 1 -type d \
             ! -name _output ! -name _freeze \
