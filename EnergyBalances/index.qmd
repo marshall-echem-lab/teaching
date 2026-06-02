@@ -1,6 +1,7 @@
 ---
 title: "Mass and Energy Balances"
 ---
+# {.unnumbered .unlisted}
 
 This section contains lecture notes and slides for the energy balance component
 of **ENCH291 Mass and Energy Balances** — a 2nd year course in Chemical and
