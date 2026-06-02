@@ -38,7 +38,7 @@ There are many different types of energy relevant to chemical engineering.
 
 ::: {.content-visible when-format="revealjs"}
 ::: {.incremental}
-- Potential energy, $E_p = mgz$
+- Potential energy, $E_p = mgz$ 
 - Kinetic energy, $E_k = \frac{1}{2}m\mathbf{v}^2$
 - Internal energy, $U$ = energy stored in matter
 :::
@@ -66,12 +66,15 @@ Internal energy is the energy stored within matter, including chemical bonds, mo
 While internal energy is the fundamental property by which energy is stored within matter, in chemical engineering we rarely deal with $U$ directly, but rather use enthalpy ($H$) as it is more convenient. We will discuss this in more detail later on. 
 :::
 
-::: {.incremental}
+::: {.content-visible when-format="revealjs"}
+. . .
+:::
+
 ::: {.callout-note}
 ### Key Term
 **Internal Energy** ($U$) — a thermodynamic state function; how energy is stored within matter.
 :::
-:::
+
 
 <!-- repeat slide title -->
 In many cases, potential and kinetic energy changes are negligible compared to changes in internal energy.
@@ -97,7 +100,6 @@ This means we will often neglect $E_p$ and $E_k$ terms in our energy balances. T
 A reservoir sits 50 m above the turbines. Calculate the potential energy
 available from 1000 kg of water.
 
-Code and output
 ```{python}
 #| echo: false
 #| output: true
@@ -115,10 +117,6 @@ print(f"E_p = m × g × z")
 print(f"E_p = {m} × {g} × {z}")
 print(f"E_p = {E_p:,.0f} J")
 ```
-
-
-
-
 
 
 ---
