@@ -35,10 +35,9 @@ Call out box content goes here. This can be used for additional explanations, ex
 
 repeat slide title (enclose in htmpl comment to avoid rendering in HTML)
 
---- (end of section or slide) 
+(end of section or slide) 
 
 -->
-
 
 ## Laws of Thermodynamics
 The 1st Law of Thermodynamics = energy is conserved.
@@ -69,8 +68,6 @@ $E = mc^2$, which shows that mass is a form of energy.
 
 :::
 
----
-
 ## Types of Energy
 
 There are many different types of energy relevant to chemical engineering. 
@@ -82,19 +79,25 @@ There are many different types of energy relevant to chemical engineering.
 :::
 
 ::: {.content-visible unless-format="revealjs"}
-The most common types of energy we deal with are potential energy (due to elevation), kinetic energy (due to motion), internal energy (stored within matter).
+The most common types of energy we deal with are potential energy, kinetic energy, and internal energy.
+
 ### Potential Energy ($E_p$)
-$E_p = mgz$
+Potential energy is the energy associated with the position of an object in a gravitational field. It is given by:
+
+$$E_p = mgz$$
+
 where $m$ is mass, $g$ is gravitational acceleration, $z$ is height above a reference point.
 
 ### Kinetic Energy ($E_k$)
-$E_k = \frac{1}{2}m\mathbf{v}^2$
+Kinetic energy is the energy associated with the motion of an object. It is given by:
+$$E_k = \frac{1}{2}m\mathbf{v}^2$$
+
 where $m$ is mass and $\mathbf{v}$ is velocity. Note that in this course we use the bold typeface $\mathbf{v}$ to denote velocity. This is becuase we will use $v$ to denote specific volume (units of m³/kg or m³/mol) later on, and we want to avoid confusion.
 
 ### Internal Energy ($U$)
 Internal energy is the energy stored within matter, including chemical bonds, molecular vibrations, and other microscopic forms of energy. 
 
-In most cases we will be concerned with changes in internal energy, which are often more conveniently expressed in terms of enthalpy ($H$) rather than $U$. We will discuss this in more detail later on. 
+While internal energy is the fundamental property by which energy is stored within matter, in chemical engineering we rarely deal with $U$ directly, but rather use enthalpy ($H$) as it is more convenient. We will discuss this in more detail later on. 
 :::
 
 ::: {.callout-note}
@@ -103,7 +106,7 @@ In most cases we will be concerned with changes in internal energy, which are of
 :::
 
 <!-- repeat slide title -->
-In many cases we will find that potential and kinetic energy changes are negligible compared to changes in internal energy.
+In many cases, potential and kinetic energy changes are negligible compared to changes in internal energy.
 
 ::: {.content-visible when-format="revealjs"}
 Exemptions may include:
@@ -122,6 +125,8 @@ This means we will often neglect $E_p$ and $E_k$ terms in our energy balances. T
 Single sentence appears in book and slides
 
 ::: {.content-visible when-format="revealjs"}
+Comment before slide bullet points
+
 - Slide bullet point
 :::
 
@@ -139,9 +144,9 @@ Book only content
 A reservoir sits **50 m** above the turbines. Calculate the potential energy
 available from **1000 kg** of water.
 
-eval: true
-# output: true
+Code and output
 ```{python}
+#| echo: true
 #| output: true
 
 
@@ -157,6 +162,56 @@ print(f"PE = m × g × z")
 print(f"PE = {m} × {g} × {z}")
 print(f"PE = {PE:,.0f} J")
 ```
+
+## Example: Hydroelectric Potential Energy
+
+A reservoir sits **50 m** above the turbines. Calculate the potential energy
+available from **1000 kg** of water.
+
+Code only
+```{python}
+#| echo: true
+#| output: false
+
+
+# Given
+m = 1000   # mass of water (kg)
+g = 9.81   # gravitational acceleration (m/s²)
+z = 50     # height above turbines (m)
+
+# Potential energy
+PE = m * g * z
+
+print(f"PE = m × g × z")
+print(f"PE = {m} × {g} × {z}")
+print(f"PE = {PE:,.0f} J")
+```
+
+## Example: Hydroelectric Potential Energy
+
+A reservoir sits **50 m** above the turbines. Calculate the potential energy
+available from **1000 kg** of water.
+
+Output only
+```{python}
+#| echo: false
+#| output: true
+
+
+# Given
+m = 1000   # mass of water (kg)
+g = 9.81   # gravitational acceleration (m/s²)
+z = 50     # height above turbines (m)
+
+# Potential energy
+PE = m * g * z
+
+print(f"PE = m × g × z")
+print(f"PE = {m} × {g} × {z}")
+print(f"PE = {PE:,.0f} J")
+```
+
+
 
 ---
 
