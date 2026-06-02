@@ -66,6 +66,7 @@ Internal energy is the energy stored within matter, including chemical bonds, mo
 While internal energy is the fundamental property by which energy is stored within matter, in chemical engineering we rarely deal with $U$ directly, but rather use enthalpy ($H$) as it is more convenient. We will discuss this in more detail later on. 
 :::
 
+. . .
 ::: {.callout-note}
 ### Key Term
 **Internal Energy** ($U$) — a thermodynamic state function; how energy is stored within matter.
@@ -90,75 +91,12 @@ Exemptions may include:
 This means we will often neglect $E_p$ and $E_k$ terms in our energy balances. This is a common assumption in chemical engineering applications, where fluid velocities are moderate and elevation differences are small. There are exceptions to this, such as in pumping fluids, high-speed flows (e.g. gas turbines), or large elevation changes (e.g. hydroelectric dams), where kinetic and potential energy changes can be significant and must be included in the energy balance.
 :::
 
-<!-- repeat slide title -->
-
-Single sentence appears in book and slides
-
-::: {.content-visible when-format="revealjs"}
-Comment before slide bullet points
-
-- Slide bullet point
-:::
-
-::: {.content-visible unless-format="revealjs"}
-Book only content
-
-:::
-
 ## Example: Hydroelectric Potential Energy
 
-A reservoir sits **50 m** above the turbines. Calculate the potential energy
-available from **1000 kg** of water.
+A reservoir sits 50 m above the turbines. Calculate the potential energy
+available from 1000 kg of water.
 
 Code and output
-```{python}
-#| echo: true
-#| output: true
-
-
-# Given
-m = 1000   # mass of water (kg)
-g = 9.81   # gravitational acceleration (m/s²)
-z = 50     # height above turbines (m)
-
-# Potential energy
-PE = m * g * z
-
-print(f"PE = m × g × z")
-print(f"PE = {m} × {g} × {z}")
-print(f"PE = {PE:,.0f} J")
-```
-
-## Example: Hydroelectric Potential Energy
-
-A reservoir sits **50 m** above the turbines. Calculate the potential energy
-available from **1000 kg** of water.
-
-Code only
-```{python}
-#| echo: true
-#| output: false
-
-
-# Given
-m = 1000   # mass of water (kg)
-g = 9.81   # gravitational acceleration (m/s²)
-z = 50     # height above turbines (m)
-
-# Potential energy
-PE = m * g * z
-
-print(f"PE = m × g × z")
-print(f"PE = {m} × {g} × {z}")
-print(f"PE = {PE:,.0f} J")
-```
-
-## Example: Hydroelectric Potential Energy
-
-A reservoir sits **50 m** above the turbines. Calculate the potential energy
-available from **1000 kg** of water.
-
-Output only
 ```{python}
 #| echo: false
 #| output: true
@@ -170,12 +108,15 @@ g = 9.81   # gravitational acceleration (m/s²)
 z = 50     # height above turbines (m)
 
 # Potential energy
-PE = m * g * z
+E_p = m * g * z
 
-print(f"PE = m × g × z")
-print(f"PE = {m} × {g} × {z}")
-print(f"PE = {PE:,.0f} J")
+print(f"E_p = m × g × z")
+print(f"E_p = {m} × {g} × {z}")
+print(f"E_p = {E_p:,.0f} J")
 ```
+
+
+
 
 
 
