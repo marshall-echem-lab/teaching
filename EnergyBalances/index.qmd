@@ -1,5 +1,6 @@
 ---
 title: "Mass and Energy Balances"
+chapter: false
 ---
 
 This section contains lecture notes and slides for the energy balance component
