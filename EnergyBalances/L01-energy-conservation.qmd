@@ -1,8 +1,3 @@
----
-title: "Energy Conservation"
-subtitle: "ENCH291 — Lecture 1"
----
-
 <!--
 the structure of slides is as follows:
 
@@ -11,10 +6,12 @@ title: "Energy Conservation"
 subtitle: "ENCH291 — Lecture 1"
 ---
 
-### Section or Slide title
+## Section or Slide title
 Single sentence overview of the section or slide.
 
 ::: {.content-visible when-format="revealjs"}
+a sentence before slide bullet points
+
 - Slide bullet points
 :::
 
@@ -22,22 +19,29 @@ Single sentence overview of the section or slide.
 Long form content for non-slide formats (e.g. HTML) goes here. This can include multiple paragraphs, equations, images, etc. The content will be hidden in slide formats
 
 ::: {.callout-note collapse="true"} -- Optional callout box for additional notes or details
-## Call out box title
+### Call out box title
 Call out box content goes here. This can be used for additional explanations, examples, or any information that is relevant but not essential to the main flow of the lecture.
 :::
 
 :::
 
 ::: {.callout-note}
-## Key Term
+### Key Term
 **Internal Energy** ($U$) — a thermodynamic state function; how energy is stored within matter.
 :::
 
-repeat slide title (enclose in htmpl comment to avoid rendering in HTML)
+repeat slide title (enclose in html comment to avoid rendering in HTML) this picks up the last ## title and uses that. We dont need to use --- to generate slides
 
 (end of section or slide) 
 
 -->
+
+---
+title: "Energy Conservation"
+subtitle: "ENCH291 — Lecture 1"
+---
+
+
 
 ## Laws of Thermodynamics
 The 1st Law of Thermodynamics = energy is conserved.
