@@ -4,36 +4,23 @@ exclude: true
 
 # Teaching Materials — Workflow Guide
 
-This repo contains lecture materials for courses taught by Prof Aaron Marshall.
-The same `.qmd` source files generate both an online textbook (Quarto book) and
-browser-based Reveal.js slide decks.
+This repo contains holds a landing page for Prof Aaron Marshall teaching materials
 
 **Live site:** https://marshall-echem-lab.github.io/teaching
 
 ---
 
+## Where things are stored
+
+Each subjec has its own repo. Multiple books and slides are built from qmd in these repos
+
+## Creating a repo
+
+New repo under marshall-echem-lab org, e.g. thermo
+Enable GitHub Pages: Settings → Pages → Source → GitHub Actions
+
 ## Folder Structure
 
-```
-teaching/
-├── README.md                         ← this file (excluded from book/slides)
-├── _quarto.yml                       ← Quarto book project config
-├── _metadata.yml                     ← shared metadata (MathJax fix for slides)
-├── _static/
-│   └── custom.css                    ← custom styles for the book
-├── collect_definitions.py            ← collects keyterms → CourseName/definitions.qmd
-├── py_requirements.txt               ← Python dependencies
-├── index.qmd                         ← site landing page
-├── .github/
-│   └── workflows/
-│       └── deploy.yml                ← GitHub Actions: build and deploy on push
-└── EnergyBalances/                   ← one folder per course
-    ├── index.qmd                     ← course landing page (lecture list + slide links)
-    ├── L01-energy-conservation.qmd   ← lecture source files
-    ├── L02-state-properties.qmd
-    ├── definitions.qmd               ← auto-generated glossary (do not edit by hand)
-    └── useful-info.qmd
-```
 
 ### Naming conventions
 
