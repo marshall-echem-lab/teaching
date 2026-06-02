@@ -10,7 +10,7 @@ book:
   repo-actions: [issue]
   chapters:
     - index.qmd
-    - part: "EnergyBalances/index.qmd"
+    - part: "EnergyBalances"
       chapters:
         - EnergyBalances/L01-energy-conservation.qmd
         - EnergyBalances/L02-state-properties.qmd

@@ -1,6 +1,7 @@
 ---
 title: "Teaching Materials"
 ---
+# {.unnumbered .unlisted}
 
 Welcome to the online teaching materials for courses taught by **Prof Aaron Marshall** at the University of Canterbury.
 
