@@ -26,3 +26,6 @@ Intensive and extensive properties...
 ## State Changes and Process Path
 
 One of the very useful attributes of state properties is that...
+
+
+![$U$ is a state function so we can measure or calculate the difference between two states](figs/U_statefunction_diagram.png){width=70% fig-align="center" #fig-H_statefunction_diagram}

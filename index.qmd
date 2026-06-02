@@ -4,7 +4,7 @@ title: "Teaching Materials"
 
 Welcome to the online teaching materials for courses taught by **Prof Aaron Marshall** at the University of Canterbury.
 
-## Courses
+## Courses {.unnumbered}
 
 - [Mass and Energy Balances](EnergyBalances/index.qmd) — ENCH291
 - [Electrochemical Engineering](ElectrochemEng/index.qmd) — ENCH483 / ENCH683
