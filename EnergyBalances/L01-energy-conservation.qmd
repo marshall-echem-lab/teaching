@@ -37,9 +37,11 @@ $E = mc^2$, which shows that mass is a form of energy.
 There are many different types of energy relevant to chemical engineering. 
 
 ::: {.content-visible when-format="revealjs"}
+::: {.incremental}
 - Potential energy, $E_p = mgz$
 - Kinetic energy, $E_k = \frac{1}{2}m\mathbf{v}^2$
 - Internal energy, $U$ = energy stored in matter
+:::
 :::
 
 ::: {.content-visible unless-format="revealjs"}
@@ -72,14 +74,18 @@ While internal energy is the fundamental property by which energy is stored with
 <!-- repeat slide title -->
 In many cases, potential and kinetic energy changes are negligible compared to changes in internal energy.
 
+<!-- slide only bullet points -->
 ::: {.content-visible when-format="revealjs"}
 Exemptions may include:
 
-- Pumping fluids, here the $E_p$ or $E_k$ terms may be significant
-- High-speed flows, e.g. gas turbines, where $E_k$ is significant
+::: {.incremental}
+- Pumping fluids. $E_p$ or $E_k$ terms may be significant
+- High-speed flows. e.g. gas turbines, where $E_k$ is significant
 - Large elevation changes, e.g. hydroelectric dams, where $E_p$ is significant
 :::
+:::
 
+<!-- Book only content -->
 ::: {.content-visible unless-format="revealjs"}
 This means we will often neglect $E_p$ and $E_k$ terms in our energy balances. This is a common assumption in chemical engineering applications, where fluid velocities are moderate and elevation differences are small. There are exceptions to this, such as in pumping fluids, high-speed flows (e.g. gas turbines), or large elevation changes (e.g. hydroelectric dams), where kinetic and potential energy changes can be significant and must be included in the energy balance.
 :::
@@ -98,10 +104,6 @@ Comment before slide bullet points
 Book only content
 
 :::
-
-
-
-
 
 ## Example: Hydroelectric Potential Energy
 
