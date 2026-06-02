@@ -66,10 +66,11 @@ Internal energy is the energy stored within matter, including chemical bonds, mo
 While internal energy is the fundamental property by which energy is stored within matter, in chemical engineering we rarely deal with $U$ directly, but rather use enthalpy ($H$) as it is more convenient. We will discuss this in more detail later on. 
 :::
 
-. . .
+::: {.incremental}
 ::: {.callout-note}
 ### Key Term
 **Internal Energy** ($U$) — a thermodynamic state function; how energy is stored within matter.
+:::
 :::
 
 <!-- repeat slide title -->
