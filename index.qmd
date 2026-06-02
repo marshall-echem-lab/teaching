@@ -1,8 +1,8 @@
 ---
-title: "Marshall eChem Lab — Teaching Materials"
+title: "Teaching Materials"
 ---
 
-Welcome to the teaching resources for the Marshall Electrochemical Engineering Lab.
+Welcome to the teaching resources from Professor Aaron Marshall.
 Select a subject below to access lecture notes, textbooks, and slides.
 
 ---
@@ -15,14 +15,13 @@ Resources covering classical thermodynamics and energy balances for chemical eng
 
 | Course | Link |
 |--------|------|
-| Thermodynamics | [marshall-echem-lab.github.io/thermo/thermodynamics-book](https://marshall-echem-lab.github.io/thermo/thermodynamics-book/) |
 | Energy Balances | [marshall-echem-lab.github.io/thermo/energybalance-book](https://marshall-echem-lab.github.io/thermo/energybalance-book/) |
+
 
 ### 🎞️ Slides
 
 | Course | Link |
 |--------|------|
-| Thermodynamics Slides | [marshall-echem-lab.github.io/thermo/thermodynamics-slides](https://marshall-echem-lab.github.io/thermo/thermodynamics-slides/) |
 | Energy Balance Slides | [marshall-echem-lab.github.io/thermo/energybalance-slides](https://marshall-echem-lab.github.io/thermo/energybalance-slides/) |
 
 ---
