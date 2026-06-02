@@ -104,126 +104,254 @@ quarto render EnergyBalances/L01-energy-conservation.qmd --to revealjs --no-proj
 
 ---
 
-## Five-Block Authoring Pattern
+## Standard Section Pattern
 
-Every lecture `.qmd` file uses these five content types:
-
-### 1. Plain content — shown in BOTH book and slides
-
-```markdown
-$$
-\dot{Q} = \dot{m} \, C_p \, \Delta T
-$$
-
-Plain text, equations, and core content go here with no wrapper.
-```
-
-### 2. Book-only prose — shown in BOOK only (invisible in slides)
+Every `##` heading creates a new book section **and** a new slide. Within each
+section the content is layered in three parts: a shared anchor sentence, then
+slide-only bullet points, then book-only prose. This is the pattern produced by
+the `newsection` VS Code snippet (see [VS Code Snippets](#vs-code-snippets) below).
 
 ```markdown
+## Section Title
+
+One sentence that appears in BOTH the book and the slides — the core idea.
+
+<!-- Slide only bullet points -->
+::: {.content-visible when-format="revealjs"}
+Optional intro phrase if needed.
+
+- Bullet point for slides
+- Another bullet point
+:::
+
+<!-- Book only content -->
 ::: {.content-visible unless-format="revealjs"}
-A sentence or two of plain prose context. Renders as normal
-text in the textbook. Completely invisible in slides.
+Full prose paragraphs for the textbook. As long as needed. Invisible in slides.
+
 :::
 ```
 
-> **Important:** Use `unless-format="revealjs"` — NOT `when-format="html"`.
-> Quarto treats revealjs as an HTML format, so `when-format="html"` matches
-> both the book AND slides. `unless-format="revealjs"` correctly excludes
-> only the slides.
+> **Important:** Always use `unless-format="revealjs"` for book-only blocks —
+> NOT `when-format="html"`. Quarto treats revealjs as an HTML format, so
+> `when-format="html"` matches both the book AND slides.
 
-### 3. Slide-only content — shown in SLIDES only
+---
+
+## Content Block Reference
+
+### 1. Shared content — shown in BOTH book and slides
+
+Plain text, equations, and the anchor sentence go here with no wrapper.
+Each section should have at least one shared sentence at the top.
+
+```markdown
+## Section Title
+
+One sentence that appears in both book and slides.
+
+$$
+E_p = mgz
+$$
+```
+
+### 2. Slide-only bullets — shown in SLIDES only
+
+Used for the bullet-point summary of the section shown during live teaching.
+
+```markdown
+<!-- Slide only bullet points -->
+::: {.content-visible when-format="revealjs"}
+Optional intro phrase.
+
+- Bullet point
+- Another bullet point
+:::
+```
+
+#### Incremental (animated) bullets
+
+Add `::: {.incremental}` inside the slide block to reveal bullets one at a time:
 
 ```markdown
 ::: {.content-visible when-format="revealjs"}
-**Key points for live teaching:**
-
-- Bullet point 1
-- Bullet point 2
+::: {.incremental}
+- First point — appears on click
+- Second point — appears on next click
+- Third point — appears on next click
+:::
 :::
 ```
 
-### 4. Book-only dropdown — shown in BOOK only as collapsed callout
+#### Pause within a slide
+
+Use `. . .` (space-dot-space-dot-space-dot) to create a reveal break mid-slide,
+e.g. to show an equation before its explanation:
+
+```markdown
+::: {.content-visible when-format="revealjs"}
+$$E_p = mgz$$
+
+. . .
+
+- $m$ = mass, $g$ = gravity, $z$ = height
+:::
+```
+
+### 3. Book-only prose — shown in BOOK only
+
+Full explanatory paragraphs, subsection headings, and detailed working.
+Completely invisible in slides.
+
+```markdown
+<!-- Book only content -->
+::: {.content-visible unless-format="revealjs"}
+Full prose for the textbook. Can include `###` subheadings, equations,
+and as much detail as needed.
+
+### Subsection heading (book only)
+
+More detail here.
+
+:::
+```
+
+### 4. Book-only collapsed callout — shown in BOOK only, collapsed by default
+
+Used for optional depth: full derivations, tangential context, worked solutions.
+Students click to expand. Nest the `unless-format` block inside the callout so
+it is also invisible in slides.
 
 ```markdown
 ::: {.callout-note collapse="true"}
-## Full derivation
+### What about nuclear?
 
 ::: {.content-visible unless-format="revealjs"}
-Detailed explanation, full worked solution, extra context.
-Completely invisible in slides. Appears as a collapsed
-callout in the textbook — students click to expand.
+Detailed explanation here. Completely invisible in slides.
+Appears as a collapsed callout in the textbook.
 :::
+
 :::
 ```
 
 ### 5. Key term definition — shown in BOTH book and slides
 
+Renders as a styled callout box in both formats. Key terms are also
+automatically extracted into the course glossary by `collect_definitions.py`
+on each deploy.
+
 ```markdown
 ::: {.callout-note}
-## 📘 Key Terms
+### Key Term
 
-**Enthalpy** (*H*) — A thermodynamic state function defined as $H = U + PV$
-
-**Internal Energy** (*U*) — The total energy stored within a system
+**Internal Energy** ($U$) — a thermodynamic state function; how energy is stored within matter.
 :::
 ```
 
-Renders as a styled callout box in both the textbook and slides.
-Key terms are also automatically extracted into a course glossary
-(`CourseName/definitions.qmd`) by `collect_definitions.py` on each deploy.
-
 **Format rules for key terms:**
-- The heading must be exactly `## 📘 Key Terms`
-- Each term must follow `**Term** (*symbol*) — definition`
-- The symbol e.g. `(*H*)` is optional — omit for terms without one
+- The heading must be exactly `### Key Term` (singular)
+- Each term follows `**Term** ($symbol$) — definition`
+- The `($symbol$)` uses inline math and is optional — omit for terms without a symbol
 - The separator must be an em-dash `—` (Mac: `Option+Shift+-`)
 
 ---
 
 ## Multiple Slides from One Book Section
 
-In the textbook, `##` creates a new section heading. In slides, `##` also
-creates a new slide. To continue onto a second slide *without* creating a
-new book section, use a horizontal rule `---`:
+To continue onto a second slide *within the same book section* (no new `##`
+heading), use a horizontal rule `---`. This is the pattern produced by the
+`newslide` VS Code snippet.
+
+The `---` is invisible in the book (Quarto ignores it in HTML output).
 
 ```markdown
 ## Energy Conservation
 
-Book prose here — as long as you like.
+One sentence for both book and slides.
 
+<!-- Slide only bullet points -->
 ::: {.content-visible when-format="revealjs"}
-Content for slide 1
+- Point for slide 1
+:::
+
+<!-- Book only content -->
+::: {.content-visible unless-format="revealjs"}
+Book prose for this part of the section.
 :::
 
 ---
 
+<!-- repeat slide title -->
+One sentence that continues the section in book and slides.
+
 ::: {.content-visible when-format="revealjs"}
-Content for slide 2 — same book section, new slide
+- Point for slide 2 — same book section, new slide
+:::
+
+::: {.content-visible unless-format="revealjs"}
+Book prose that continues the section.
 :::
 ```
 
-The `---` is invisible in the book (Quarto ignores it in HTML output).
+Note the `<!-- repeat slide title -->` comment on the continuation slide — this
+is a reminder that the slide has no heading, so the shared sentence acts as the
+visual anchor.
+
+---
+
+## VS Code Snippets
+
+Snippets are stored at:
+```
+/Users/atm45/Library/Application Support/Code/User/snippets/
+```
+
+Two snippets are available. Trigger them by typing the prefix and pressing `Tab`.
+
+### `newsection` — new `##` section (new book section + new slide)
+
+Inserts the full three-part pattern: shared sentence, slide bullets, book prose.
+
+| Tab stop | Field |
+|---|---|
+| `$1` | Section heading (replaces `## Section (and Slide) title`) |
+| `$2` | Shared anchor sentence (book + slides) |
+| `$3` | Optional intro phrase for slide bullets |
+| `$4` | Slide bullet point |
+| `$5` | Book-only prose |
+
+### `newslide` — continuation slide (same book section, new slide)
+
+Inserts a `---` break followed by the shared/slide/book pattern, without a new
+`##` heading. Use this when a section needs more than one slide.
+
+| Tab stop | Field |
+|---|---|
+| `$1` | Shared anchor sentence (book + slides) |
+| `$2` | Slide bullet point |
+| `$3` | Book-only prose |
 
 ---
 
 ## Python Code in Lectures
 
 Quarto executes Python code cells and can show or hide the source code
-independently of the output. Use the `echo` and `eval` cell options:
+independently of the output. Use the `echo` and `output` cell options:
 
 ```python
-#| echo: true     # show the source code in book AND slides
-#| eval: true     # execute the code and show the output
+#| echo: false    # hide the source code
+#| output: true   # show the output (result, plot, printed text)
 
-import numpy as np
-x = np.linspace(0, 10, 100)
+m = 1000
+g = 9.81
+z = 50
+E_p = m * g * z
+print(f"E_p = {E_p:,.0f} J")
 ```
 
 | Goal | Options |
 |---|---|
-| Show code + output | `echo: true`, `eval: true` |
-| Output only (hide code) | `echo: false`, `eval: true` |
+| Show code + output | `echo: true`, `output: true` |
+| Output only (hide code) | `echo: false`, `output: true` |
 | Code only (don't run) | `echo: true`, `eval: false` |
 | Slides only | wrap cell in `{.content-visible when-format="revealjs"}` |
 
@@ -236,7 +364,7 @@ x = np.linspace(0, 10, 100)
 ```markdown
 # Heading 1   ← book chapter title / first slide in a deck
 ## Heading 2  ← book section     / new slide
-### Heading 3 ← book subsection  / subheading within a slide
+### Heading 3 ← book subsection  / subheading within a slide (book only)
 ```
 
 ### Text Formatting
@@ -257,12 +385,12 @@ x = np.linspace(0, 10, 100)
 
 ### Mathematics
 
-Inline: `$\dot{Q} = \dot{m} C_p \Delta T$`
+Inline: `$E_p = mgz$`
 
 Display block:
 ```markdown
 $$
-\dot{Q} = \dot{m} \, C_p \, \Delta T
+E_p = mgz
 $$
 ```
 
