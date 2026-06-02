@@ -1,11 +1,38 @@
 ---
-title: "Teaching Materials"
+title: "Marshall eChem Lab — Teaching Materials"
 ---
-# {.unnumbered .unlisted}
 
-Welcome to the online teaching materials for courses taught by **Prof Aaron Marshall** at the University of Canterbury.
+Welcome to the teaching resources for the Marshall Electrochemical Engineering Lab.
+Select a subject below to access lecture notes, textbooks, and slides.
 
-## Courses {.unnumbered}
+---
 
-- [Mass and Energy Balances](EnergyBalances/index.qmd) — ENCH291
-- [Electrochemical Engineering](ElectrochemEng/index.qmd) — ENCH483 / ENCH683
+## Thermodynamics
+
+Resources covering classical thermodynamics and energy balances for chemical engineering.
+
+### 📘 Books
+
+| Course | Link |
+|--------|------|
+| Thermodynamics | [marshall-echem-lab.github.io/thermo/thermodynamics-book](https://marshall-echem-lab.github.io/thermo/thermodynamics-book/) |
+| Energy Balances | [marshall-echem-lab.github.io/thermo/energybalance-book](https://marshall-echem-lab.github.io/thermo/energybalance-book/) |
+
+### 🎞️ Slides
+
+| Course | Link |
+|--------|------|
+| Thermodynamics Slides | [marshall-echem-lab.github.io/thermo/thermodynamics-slides](https://marshall-echem-lab.github.io/thermo/thermodynamics-slides/) |
+| Energy Balance Slides | [marshall-echem-lab.github.io/thermo/energybalance-slides](https://marshall-echem-lab.github.io/thermo/energybalance-slides/) |
+
+---
+
+## Electrochemistry
+
+::: {.callout-note}
+Electrochemistry materials coming soon.
+:::
+
+---
+
+*Maintained by the [Marshall eChem Lab](https://github.com/marshall-echem-lab).*

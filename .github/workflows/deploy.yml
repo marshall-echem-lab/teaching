@@ -1,4 +1,4 @@
-name: Build and Deploy Teaching Site
+name: Deploy Teaching Site
 
 on:
   push:
@@ -17,53 +17,17 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-
-      - name: Install Python dependencies
-        run: pip install -r py_requirements.txt
-
-      - name: Install Quarto
+      - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      - name: Generate course glossaries
-        run: python collect_definitions.py
-
-      # ── Render slide decks ────────────────────────────────────────────────
-      # Copy each course folder into slides/ so Quarto can render them as a
-      # self-contained default project (no cross-directory file references).
-      # The copies are temporary — only the rendered HTML output is kept.
-      - name: Render slide decks
-        run: |
-          find . -mindepth 1 -maxdepth 1 -type d \
-            ! -name slides ! -name _site ! -name _freeze \
-            ! -name _static ! -name .git ! -name .github \
-            | while read course; do
-              cp -r "$course" slides/
-          done
-          python inject_slide_titles.py slides/
-          quarto render slides/
-          find slides/ -mindepth 1 -maxdepth 1 -type d \
-            ! -name _output ! -name _freeze \
-            | xargs rm -rf
-
-      # ── Render textbook ───────────────────────────────────────────────────
-      - name: Render textbook
+      - name: Render site
         run: quarto render
 
-      - name: Copy slides into site output
-        run: |
-          mkdir -p _site/_slides
-          cp -r slides/_output/* _site/_slides/
-
-      - name: Upload GitHub Pages artifact
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: _site
@@ -74,7 +38,6 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
     steps:
       - name: Deploy to GitHub Pages
         id: deployment

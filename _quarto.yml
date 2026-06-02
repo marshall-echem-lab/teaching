@@ -1,33 +1,22 @@
 project:
-  type: book
+  type: website
   output-dir: _site
 
-book:
-  title: "Teaching Materials"
-  author: "Prof Aaron Marshall"
-  site-url: https://marshall-echem-lab.github.io/teaching
-  repo-url: https://github.com/marshall-echem-lab/teaching
-  repo-actions: [issue]
-  chapters:
-    - index.qmd
-    - part: "EnergyBalances"
-      chapters:
-        - EnergyBalances/L01-energy-conservation.qmd
-        - EnergyBalances/L02-state-properties.qmd
-        - EnergyBalances/definitions.qmd
-        - EnergyBalances/useful-info.qmd
-    - part: "ElectrochemEng/index.qmd"
-      chapters:
-        - ElectrochemEng/L01-intro.qmd
+website:
+  title: "Marshall eChem Lab — Teaching"
+  description: "Teaching materials for chemical engineering courses"
+  favicon: favicon.ico
+  navbar:
+    left:
+      - text: "Home"
+        href: index.qmd
+    right:
+      - icon: github
+        href: https://github.com/marshall-echem-lab
+        aria-label: GitHub
 
 format:
   html:
     theme: cosmo
-    css: _static/custom.css
-    toc: true
-    number-sections: false
-    html-math-method: mathjax
-
-execute:
-  freeze: auto
-  cache: true
+    css: styles.css
+    toc: false
