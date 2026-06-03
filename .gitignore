@@ -20,3 +20,5 @@ __pycache__/
 /.quarto/
 **/*.quarto_ipynb
 **/.jupyter_cache/
+
+**/key-terms.qmd
