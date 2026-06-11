@@ -21,3 +21,8 @@ __pycache__/
 **/*.quarto_ipynb
 **/.jupyter_cache/
 
+# pptx figures
+*.pptx
+
+energybalance-book/figures/
+energybalance-slides/figures/

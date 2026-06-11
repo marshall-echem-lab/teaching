@@ -34,4 +34,4 @@ Electrochemistry materials coming soon.
 
 ---
 
-*Maintained by the [Marshall eChem Lab](https://github.com/marshall-echem-lab).*
+*Maintained by the [Prof Aaron Marshall](https://github.com/marshall-echem-lab).*
