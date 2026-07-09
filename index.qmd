@@ -11,12 +11,13 @@ Select a subject below to access lecture notes, textbooks, and slides.
 
 Resources covering classical thermodynamics and energy balances for chemical engineering.
 
+<!--
 ### 📘 Books
 
 | Course | Link |
 |--------|------|
 | Energy Balances | [marshall-echem-lab.github.io/thermo/energybalance-book](https://marshall-echem-lab.github.io/thermo/energybalance-book/) |
-
+-->
 
 ### 🎞️ Slides
 
