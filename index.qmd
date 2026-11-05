@@ -9,7 +9,7 @@ Select a subject below to access lecture notes, textbooks, and slides.
 
 ## Thermodynamics
 
-Resources covering classical thermodynamics and energy balances for chemical engineering.
+Resources covering chemical engineering thermodynamics and energy balances for chemical engineering.
 
 <!--
 ### 📘 Books
